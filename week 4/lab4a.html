@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Admissions Portal</title>
+</head>
+<body>
+    <p class="student-info">Name: MAHESWARAN Roll no: AV.SC.U4CSE25127 Sec: CSE-B</p>
+
+<h2 align="center">University Admissions Portal</h2>
+
+<form action="#" method="POST" enctype="multipart/form-data">
+
+<table align="center" border="1" cellpadding="10" cellspacing="0" width="60%">
+    <tr>
+        <th colspan="2">Student Registration Form</th>
+    </tr>
+
+    <tr>
+        <td align="right"><b>Full Name:</b></td>
+        <td><input type="text" name="fullname" placeholder="Enter full name" required></td>
+    </tr>
+
+    <tr>
+        <td align="right"><b>Email Address:</b></td>
+        <td><input type="email" name="email" placeholder="student@example.com" required></td>
+    </tr>
+
+    <tr>
+        <td align="right"><b>Phone Number:</b></td>
+        <td><input type="tel" name="phone" placeholder="123-456-7890"></td>
+    </tr>
+
+    <tr>
+        <td align="right"><b>Gender:</b></td>
+        <td>
+            <label><input type="radio" name="gender" value="male"> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label>
+            <label><input type="radio" name="gender" value="other"> Other</label>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="right"><b>Course Applying For:</b></td>
+        <td>
+            <label for="course">Select a Course:</label>
+            <select id="course" name="course" required>
+                <option value="">-- Select a Course --</option>
+                <option value="cs">B.Tech CSE</option>
+                <option value="aie">B.Tech AIE</option>
+                <option value="aids">B.Tech AIDS</option>
+                <option value="cce">B.Tech CCE</option>
+            </select>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="right"><b>Hobbies:</b></td>
+        <td>
+            <label><input type="checkbox" name="hobbies[]" value="reading"> Reading</label>
+            <label><input type="checkbox" name="hobbies[]" value="sports"> Sports</label>
+            <label><input type="checkbox" name="hobbies[]" value="music"> Music</label>
+            <label><input type="checkbox" name="hobbies[]" value="art"> Art</label>
+        </td>
+    </tr>
+
+    <tr>
+        <td align="right"><b>Date of Birth:</b></td>
+        <td><input type="date" name="dob" placeholder="MM/DD/YYYY" title="Enter your date of birth"></td>
+    </tr>
+
+    <tr>
+        <td align="right"><b>Upload Image:</b></td>
+        <td><input type="file" name="image" accept="image/*" title="Upload your image file" required></td>
+    </tr>
+
+    <tr>
+        <td align="right" valign="top"><b>Address:</b></td>
+        <td><textarea name="address" rows="4" cols="35" placeholder="Enter full address..."></textarea></td>
+    </tr>
+
+    <tr>
+        <td colspan="2" align="center">
+            <input type="submit" value="Submit Application">
+            &nbsp;&nbsp;&nbsp;
+            <input type="reset" value="Clear Form">
+        </td>
+    </tr>
+
+</table>
+
+</form>
+
+</body>
+</html>

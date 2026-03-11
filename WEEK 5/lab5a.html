@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Card Layout</title>
+<p class="student-info">Name: MAHESWARAN Roll no: AV.SC.U4CSE25127 Sec: CSE-B</p>
+<style>
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin:0;
+    padding:0;
+    background:#f4f4f4;
+}
+
+
+.card-container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap; 
+    gap:20px;
+    padding:40px;
+}
+
+
+.card{
+    background:white;
+    width:300px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    text-align:center;
+    transition:transform 0.3s;
+}
+
+
+.card:hover{
+    transform:scale(1.05);
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card h3{
+    margin:10px 0;
+}
+
+.card button{
+    padding:10px 20px;
+    border:none;
+    background:#007BFF;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+    transition:background 0.3s;
+}
+
+.card button:hover{
+    background:#0056b3;
+}
+
+@media(max-width:768px){
+    .card-container{
+        flex-direction:column;
+        align-items:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card-container">
+
+    <div class="card">
+        <img src="himalyan.png" alt="bike Image">
+        <div class="card-content">
+            <h3>Royal Enfield Himalayan</h3>
+            <p>The Royal Enfield Himalayan is an adventure touring motorcycle designed for both on-road and off-road riding. Equipped with a 411cc single-cylinder engine, it delivers reliable performance and torque. Its rugged build and long-travel suspension make it ideal for exploring diverse terrains. This bike combines classic styling with modern engineering for an unforgettable riding experience.</p>
+            <button>Buy Now</button>
+        </div>
+    </div>
+    <div class="card">
+        <img src="meteor.png" alt="bike Image">
+        <div class="card-content">
+            <h3>Royal Enfield Meteor 350</h3>
+            <p>The Royal Enfield Meteor 350 is a cruiser motorcycle that blends retro aesthetics with contemporary features. Powered by a 349cc air-cooled engine, it offers smooth and effortless riding. Its comfortable seating position and relaxed ergonomics make it perfect for long city cruises. With modern technology like Bluetooth connectivity, it appeals to both classic and modern riders.</p>
+            <button>Buy Now</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="ninja.png" alt="bike Image">
+        <div class="card-content">
+            <h3>Kawasaki Ninja 350</h3>
+            <p>The Kawasaki Ninja 350 is a sporty  bike designed for urban performance and agility. Featuring a 348cc parallel-twin engine, it provides spirited acceleration and responsive handling. Its sleek and aggressive styling turns heads on the street. With advanced features like ABS and a digital display, it's both fun and practical for daily commuting.</p>
+            <button>Buy Now</button>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
