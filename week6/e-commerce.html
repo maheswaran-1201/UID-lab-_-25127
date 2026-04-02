@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LUXE – Premium E-Commerce</title>
+
+  <!-- Google Fonts: Playfair Display (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CSS
+  ═══════════════════════════════════════════════════════════ -->
+  <style>
+    /* ──────────────────────────────────────────────────────────
+       DESIGN TOKENS  (CSS custom properties)
+    ────────────────────────────────────────────────────────── */
+    :root {
+      --bg-base:        #0d1117;
+      --bg-surface:     #161b24;
+      --bg-card:        #1c2333;
+      --bg-hover:       #222d42;
+
+      --gold:           #c9a84c;
+      --gold-light:     #e2c47a;
+      --gold-glow:      rgba(201,168,76,.18);
+
+      --text-primary:   #f0e8d8;
+      --text-secondary: #8b97a8;
+      --text-muted:     #4d5a6a;
+
+      --border:         rgba(201,168,76,.15);
+      --radius-sm:      8px;
+      --radius-md:      14px;
+      --radius-lg:      20px;
+
+      --transition:     .25s cubic-bezier(.4,0,.2,1);
+      --shadow-card:    0 4px 24px rgba(0,0,0,.45);
+      --shadow-gold:    0 0 20px rgba(201,168,76,.25);
+
+      --font-display:   'Playfair Display', Georgia, serif;
+      --font-body:      'DM Sans', system-ui, sans-serif;
+    }
+
+    /* ── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-base);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; font-family: var(--font-body); border: none; outline: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ──────────────────────────────────────────────────────────
+       PAGE SHELL — CSS Grid (3 rows: header | main | footer)
+    ────────────────────────────────────────────────────────── */
+    .page-grid {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────────── */
+    header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      letter-spacing: .12em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .logo span { color: var(--text-primary); }
+
+    /* Cart widget */
+    .cart-wrap {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: .45rem 1rem;
+      cursor: pointer;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .cart-wrap:hover {
+      background: var(--bg-hover);
+      border-color: var(--gold);
+      box-shadow: var(--shadow-gold);
+    }
+    .cart-icon { font-size: 1.1rem; }
+    .cart-label {
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: .05em;
+    }
+    #cart-count {
+      background: var(--gold);
+      color: #0d1117;
+      font-size: .68rem;
+      font-weight: 700;
+      border-radius: 50%;
+      min-width: 1.4rem;
+      height: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 .3rem;
+      transition: transform .2s, background .2s;
+    }
+    /* Pop animation on cart count update */
+    #cart-count.pop { animation: pop .28s ease; }
+    @keyframes pop {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.45); }
+      100% { transform: scale(1); }
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       MAIN ROW — CSS Grid (sidebar | content)
+    ────────────────────────────────────────────────────────── */
+    .main-row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR ─────────────────────────────────────────────── */
+    .sidebar {
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border);
+      padding: 2rem 1.2rem;
+      position: sticky;
+      top: 68px;
+      height: calc(100vh - 68px);
+      overflow-y: auto;
+    }
+
+    .sidebar-title {
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      padding-left: .6rem;
+    }
+    .sidebar-divider {
+      height: 1px;
+      background: var(--border);
+      margin: .5rem 0 1.2rem;
+    }
+
+    /* Category buttons */
+    .category-btn {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      width: 100%;
+      padding: .7rem .9rem;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: .88rem;
+      font-weight: 400;
+      text-align: left;
+      transition: background var(--transition), color var(--transition);
+      margin-bottom: .25rem;
+    }
+    .category-btn .cat-icon { font-size: 1rem; }
+    .category-btn:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+    .category-btn.active {
+      background: var(--gold-glow);
+      color: var(--gold-light);
+      font-weight: 500;
+      border-left: 2px solid var(--gold);
+      padding-left: calc(.9rem - 2px);
+    }
+
+    /* ── CONTENT AREA ────────────────────────────────────────── */
+    .content { padding: 2.5rem 2rem; }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .section-heading h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--text-primary);
+    }
+    .product-count {
+      font-size: .78rem;
+      color: var(--text-muted);
+      letter-spacing: .06em;
+    }
+
+    /* ── PRODUCT GRID — CSS Grid with responsive auto-fill ───── */
+    #product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* ── PRODUCT CARD ────────────────────────────────────────── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      animation: fadeUp .4s ease both; /* staggered via inline style */
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 36px rgba(0,0,0,.55), var(--shadow-gold);
+      border-color: rgba(201,168,76,.4);
+    }
+
+    /* Image wrapper */
+    .card-img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 180px;
+      background: #111824;
+    }
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .card:hover .card-img-wrap img { transform: scale(1.07); }
+
+    /* Category tag overlay on image */
+    .card-tag {
+      position: absolute;
+      top: .6rem;
+      left: .6rem;
+      background: rgba(13,17,23,.75);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: .62rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: .2rem .5rem;
+    }
+
+    /* Card body */
+    .card-body {
+      padding: 1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      flex: 1;
+    }
+    .card-name {
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.35;
+    }
+    .card-price {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--gold);
+      letter-spacing: .03em;
+    }
+    .card-rating {
+      font-size: .72rem;
+      color: var(--text-muted);
+    }
+    .card-rating span { color: #e2b84a; }
+
+    /* Add to Cart button */
+    .card-btn {
+      margin-top: auto;
+      padding: .62rem 0;
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius-sm);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+    }
+    .card-btn:hover {
+      background: var(--gold);
+      color: var(--bg-base);
+      box-shadow: 0 0 16px rgba(201,168,76,.4);
+    }
+    .card-btn.added {
+      background: var(--gold);
+      color: var(--bg-base);
+    }
+
+    /* ── EMPTY STATE ─────────────────────────────────────────── */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 0;
+      color: var(--text-muted);
+    }
+    .empty-state .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .empty-state p { font-size: .9rem; }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: .1em;
+    }
+    .footer-copy { font-size: .75rem; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.2rem; }
+    .footer-links a {
+      font-size: .75rem;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── TOAST NOTIFICATION ─────────────────────────────────── */
+    #toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--gold);
+      color: var(--text-primary);
+      padding: .75rem 1.2rem;
+      border-radius: var(--radius-sm);
+      font-size: .84rem;
+      box-shadow: var(--shadow-gold);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity .3s, transform .3s;
+      z-index: 200;
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+
+    /* ── HAMBURGER (mobile only) ─────────────────────────────── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      padding: .4rem;
+      border-radius: 6px;
+      transition: background var(--transition);
+    }
+    .hamburger:hover { background: var(--bg-hover); }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: transform .25s, opacity .25s;
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 49;
+    }
+    .sidebar-overlay.active { display: block; }
+
+    /* ──────────────────────────────────────────────────────────
+       RESPONSIVE BREAKPOINTS
+    ────────────────────────────────────────────────────────── */
+
+    /* Tablet (≤900px) */
+    @media (max-width: 900px) {
+      .main-row { grid-template-columns: 180px 1fr; }
+      #product-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+      .content { padding: 1.8rem 1.4rem; }
+    }
+
+    /* Mobile (≤640px) — sidebar becomes a slide-over overlay */
+    @media (max-width: 640px) {
+      .hamburger { display: flex; }
+      .main-row  { grid-template-columns: 1fr; }
+      .sidebar {
+        position: fixed;
+        top: 0; left: 0;
+        height: 100vh;
+        width: 240px;
+        z-index: 50;
+        transform: translateX(-100%);
+        transition: transform .3s cubic-bezier(.4,0,.2,1);
+        border-right: 1px solid var(--border);
+        padding-top: 4rem;
+      }
+      .sidebar.open { transform: translateX(0); }
+      #product-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
+      .card-img-wrap { height: 140px; }
+      .content { padding: 1.5rem 1rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+
+    /* Very small screens */
+    @media (max-width: 380px) {
+      #product-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE SHELL
+═══════════════════════════════════════════════════════════ -->
+<div class="page-grid">
+
+  <!-- ── HEADER ──────────────────────────────────────────────── -->
+  <header>
+    <!-- Hamburger toggle (visible only on mobile via CSS) -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle sidebar">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="logo">LUXE <span>Shop</span></div>
+
+    <!-- Cart badge -->
+    <div class="cart-wrap" title="Your Cart">
+      <span class="cart-icon">🛍️</span>
+      <span class="cart-label">Cart</span>
+      <span id="cart-count">0</span>
+    </div>
+  </header>
+
+  <!-- ── MAIN ROW ─────────────────────────────────────────────── -->
+  <div class="main-row">
+
+    <!-- Overlay (mobile — tap outside sidebar to close) -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- ── SIDEBAR ──────────────────────────────────────────── -->
+    <aside class="sidebar" id="sidebar">
+      <p class="sidebar-title">Browse By</p>
+      <nav>
+        <!-- data-category is read by JS to filter products -->
+        <button class="category-btn active" data-category="Electronics">
+          <span class="cat-icon">💻</span> Electronics
+        </button>
+        <button class="category-btn" data-category="Clothing">
+          <span class="cat-icon">👗</span> Clothing
+        </button>
+        <button class="category-btn" data-category="Home Appliances">
+          <span class="cat-icon">🏠</span> Home Appliances
+        </button>
+        <button class="category-btn" data-category="Books">
+          <span class="cat-icon">📚</span> Books
+        </button>
+      </nav>
+      <div class="sidebar-divider"></div>
+      <p class="sidebar-title">Support</p>
+      <button class="category-btn"><span class="cat-icon">🚚</span> Shipping Info</button>
+      <button class="category-btn"><span class="cat-icon">↩️</span> Returns</button>
+    </aside>
+
+    <!-- ── CONTENT AREA ──────────────────────────────────────── -->
+    <main class="content">
+      <div class="section-heading">
+        <h2 id="section-title">Electronics</h2>
+        <span class="product-count" id="product-count"></span>
+      </div>
+      <!-- Product cards rendered here by JS -->
+      <div id="product-grid"></div>
+    </main>
+
+  </div><!-- /main-row -->
+
+  <!-- ── FOOTER ───────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-logo">LUXE</div>
+    <p class="footer-copy">© 2025 LUXE Shop. All rights reserved.</p>
+    <nav class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </nav>
+  </footer>
+
+</div><!-- /page-grid -->
+
+<!-- Toast notification element -->
+<div id="toast"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════════ -->
+<script>
+  /* ────────────────────────────────────────────────────────────
+     PRODUCT DATA
+     Array of objects — each product has:
+       id, category, name, price, rating, reviews, image
+  ────────────────────────────────────────────────────────────*/
+  const products = [
+    // ── Electronics ─────────────────────────────────────────
+    { id:1,  category:"Electronics",     name:"ProBook Laptop 15\"",        price:1299, rating:4.7, reviews:312,    image:"https://picsum.photos/seed/laptop1/400/300" },
+    { id:2,  category:"Electronics",     name:"NoiseBolt Wireless Earbuds", price:149,  rating:4.5, reviews:880,    image:"https://picsum.photos/seed/earbuds2/400/300" },
+    { id:3,  category:"Electronics",     name:"VisionX 4K Monitor 27\"",    price:449,  rating:4.8, reviews:203,    image:"https://picsum.photos/seed/monitor3/400/300" },
+    { id:4,  category:"Electronics",     name:"SnapShot Pro DSLR Camera",   price:899,  rating:4.6, reviews:97,     image:"https://picsum.photos/seed/camera4/400/300" },
+    { id:5,  category:"Electronics",     name:"UltraCharge 65W USB-C Hub",  price:79,   rating:4.4, reviews:541,    image:"https://picsum.photos/seed/hub5/400/300" },
+    // ── Clothing ─────────────────────────────────────────────
+    { id:6,  category:"Clothing",        name:"Merino Wool Crew Sweater",   price:129,  rating:4.8, reviews:415,    image:"https://picsum.photos/seed/sweater6/400/300" },
+    { id:7,  category:"Clothing",        name:"Classic Slim Chinos",        price:89,   rating:4.5, reviews:760,    image:"https://picsum.photos/seed/chinos7/400/300" },
+    { id:8,  category:"Clothing",        name:"Linen Summer Dress",         price:74,   rating:4.6, reviews:329,    image:"https://picsum.photos/seed/dress8/400/300" },
+    { id:9,  category:"Clothing",        name:"Leather Bomber Jacket",      price:259,  rating:4.9, reviews:183,    image:"https://picsum.photos/seed/jacket9/400/300" },
+    { id:10, category:"Clothing",        name:"TrailRun Joggers",           price:65,   rating:4.3, reviews:602,    image:"https://picsum.photos/seed/jogger10/400/300" },
+    // ── Home Appliances ───────────────────────────────────────
+    { id:11, category:"Home Appliances", name:"AeroBlend Smart Blender",    price:219,  rating:4.7, reviews:488,    image:"https://picsum.photos/seed/blender11/400/300" },
+    { id:12, category:"Home Appliances", name:"SilentBreeze Air Purifier",  price:329,  rating:4.8, reviews:274,    image:"https://picsum.photos/seed/purifier12/400/300" },
+    { id:13, category:"Home Appliances", name:"InstaRoast 5.5L Air Fryer",  price:149,  rating:4.6, reviews:912,    image:"https://picsum.photos/seed/fryer13/400/300" },
+    { id:14, category:"Home Appliances", name:"RoboVac X9 Robot Vacuum",    price:499,  rating:4.9, reviews:361,    image:"https://picsum.photos/seed/vacuum14/400/300" },
+    { id:15, category:"Home Appliances", name:"BrewMaster Coffee Machine",  price:189,  rating:4.5, reviews:637,    image:"https://picsum.photos/seed/coffee15/400/300" },
+    // ── Books ─────────────────────────────────────────────────
+    { id:16, category:"Books",           name:"Atomic Habits — James Clear", price:18,  rating:4.9, reviews:11420,  image:"https://picsum.photos/seed/book16/400/300" },
+    { id:17, category:"Books",           name:"The Pragmatic Programmer",    price:35,  rating:4.8, reviews:5302,   image:"https://picsum.photos/seed/book17/400/300" },
+    { id:18, category:"Books",           name:"Thinking, Fast and Slow",     price:22,  rating:4.7, reviews:8947,   image:"https://picsum.photos/seed/book18/400/300" },
+    { id:19, category:"Books",           name:"Dune — Frank Herbert",        price:19,  rating:4.9, reviews:15800,  image:"https://picsum.photos/seed/book19/400/300" },
+    { id:20, category:"Books",           name:"Clean Code — Robert Martin",  price:38,  rating:4.6, reviews:4100,   image:"https://picsum.photos/seed/book20/400/300" },
+  ];
+
+  /* ────────────────────────────────────────────────────────────
+     STATE
+  ────────────────────────────────────────────────────────────*/
+  let cartCount = 0;                       // how many items in cart
+  let activeCategory = "Electronics";     // currently shown category
+
+  /* ────────────────────────────────────────────────────────────
+     DOM REFERENCES
+  ────────────────────────────────────────────────────────────*/
+  const productGrid  = document.getElementById("product-grid");
+  const sectionTitle = document.getElementById("section-title");
+  const productCount = document.getElementById("product-count");
+  const cartCountEl  = document.getElementById("cart-count");
+  const toastEl      = document.getElementById("toast");
+  const hamburger    = document.getElementById("hamburger");
+  const sidebar      = document.getElementById("sidebar");
+  const overlay      = document.getElementById("sidebar-overlay");
+
+  // All sidebar buttons that carry a data-category attribute
+  const categoryBtns = document.querySelectorAll(".category-btn[data-category]");
+
+  /* ────────────────────────────────────────────────────────────
+     HELPER — render star rating string
+  ────────────────────────────────────────────────────────────*/
+  function starsHtml(rating) {
+    const full  = Math.floor(rating);
+    const half  = (rating % 1) >= 0.5 ? 1 : 0;
+    const empty = 5 - full - half;
+    return "★".repeat(full) + (half ? "½" : "") + "☆".repeat(empty);
+  }
+
+  /* ────────────────────────────────────────────────────────────
+     HELPER — toast notification (auto-dismisses after 2.2 s)
+  ────────────────────────────────────────────────────────────*/
+  let toastTimer;
+  function showToast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2200);
+  }
+
+  /* ────────────────────────────────────────────────────────────
+     RENDER PRODUCTS
+     Filters the products array by category, builds card HTML,
+     appends to #product-grid, then attaches "Add to Cart" listeners.
+  ────────────────────────────────────────────────────────────*/
+  function renderProducts(category) {
+    const filtered = products.filter(p => p.category === category);
+
+    // Update heading & count line
+    sectionTitle.textContent = category;
+    productCount.textContent = `${filtered.length} item${filtered.length !== 1 ? "s" : ""}`;
+
+    // Wipe current grid
+    productGrid.innerHTML = "";
+
+    if (filtered.length === 0) {
+      productGrid.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">🔍</div>
+          <p>No products found in this category.</p>
+        </div>`;
+      return;
+    }
+
+    // Build one card per product
+    filtered.forEach((product, index) => {
+      const card = document.createElement("article");
+      card.className = "card";
+      // Stagger the fade-up animation for each card
+      card.style.animationDelay = `${index * 60}ms`;
+
+      card.innerHTML = `
+        <div class="card-img-wrap">
+          <img src="${product.image}" alt="${product.name}" loading="lazy"/>
+          <span class="card-tag">${product.category}</span>
+        </div>
+        <div class="card-body">
+          <p class="card-name">${product.name}</p>
+          <p class="card-price">$${product.price.toLocaleString()}</p>
+          <p class="card-rating">
+            <span>${starsHtml(product.rating)}</span>
+            ${product.rating} (${product.reviews.toLocaleString()} reviews)
+          </p>
+          <button class="card-btn" data-id="${product.id}">Add to Cart</button>
+        </div>`;
+
+      productGrid.appendChild(card);
+    });
+
+    // Attach listeners to newly rendered buttons
+    productGrid.querySelectorAll(".card-btn").forEach(btn => {
+      btn.addEventListener("click", handleAddToCart);
+    });
+  }
+
+  /* ────────────────────────────────────────────────────────────
+     ADD TO CART HANDLER
+  ────────────────────────────────────────────────────────────*/
+  function handleAddToCart(e) {
+    const btn     = e.currentTarget;
+    const id      = parseInt(btn.dataset.id, 10);
+    const product = products.find(p => p.id === id);
+
+    // Update cart count
+    cartCount++;
+    cartCountEl.textContent = cartCount;
+
+    // Trigger pop animation (remove → force reflow → re-add)
+    cartCountEl.classList.remove("pop");
+    void cartCountEl.offsetWidth;
+    cartCountEl.classList.add("pop");
+
+    // Brief button feedback state
+    btn.textContent = "✓ Added!";
+    btn.classList.add("added");
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = "Add to Cart";
+      btn.classList.remove("added");
+      btn.disabled = false;
+    }, 1200);
+
+    // Show toast
+    showToast(`🛍️ "${product.name}" added to cart`);
+  }
+
+  /* ────────────────────────────────────────────────────────────
+     CATEGORY SELECTION
+  ────────────────────────────────────────────────────────────*/
+  categoryBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const cat = btn.dataset.category;
+      activeCategory = cat;
+
+      // Swap active class
+      categoryBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      // Re-render products for the new category
+      renderProducts(cat);
+
+      // Close sidebar on mobile after selection
+      closeSidebar();
+    });
+  });
+
+  /* ────────────────────────────────────────────────────────────
+     MOBILE SIDEBAR TOGGLE
+  ────────────────────────────────────────────────────────────*/
+  function openSidebar()  { sidebar.classList.add("open");    overlay.classList.add("active"); }
+  function closeSidebar() { sidebar.classList.remove("open"); overlay.classList.remove("active"); }
+
+  hamburger.addEventListener("click", () => {
+    sidebar.classList.contains("open") ? closeSidebar() : openSidebar();
+  });
+  overlay.addEventListener("click", closeSidebar);
+
+  /* ────────────────────────────────────────────────────────────
+     INITIAL RENDER — show first category on page load
+  ────────────────────────────────────────────────────────────*/
+  renderProducts(activeCategory);
+</script>
+
+</body>
+</html>
