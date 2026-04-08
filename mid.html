@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UID Exam Study Guide – Unit 1 & 2</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Code+Pro:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #0e0f1a;
+    --surface: #161727;
+    --surface2: #1e2035;
+    --accent: #7c6af7;
+    --accent2: #f76a6a;
+    --accent3: #6af7b0;
+    --accent4: #f7c56a;
+    --text: #e8eaf6;
+    --text-muted: #8b8fa8;
+    --border: #2a2d45;
+    --html-color: #f76a6a;
+    --css-color: #6af7b0;
+    --tag-bg: #1a1d30;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR NAV ── */
+  #sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 260px;
+    height: 100vh;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    z-index: 100;
+    padding: 20px 0 40px;
+  }
+
+  #sidebar .logo {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  #sidebar .logo h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--accent);
+  }
+  #sidebar .logo p { font-size: 12px; color: var(--text-muted); }
+
+  #sidebar a {
+    display: block;
+    padding: 7px 20px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
+  }
+  #sidebar a:hover { color: var(--text); background: var(--surface2); border-left-color: var(--accent); }
+  #sidebar .nav-section {
+    padding: 12px 20px 6px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ── MAIN CONTENT ── */
+  #main {
+    margin-left: 260px;
+    padding: 40px 48px 80px;
+    max-width: 1100px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #1a1d35 0%, #16192a 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(124,106,247,0.15), transparent 70%);
+    border-radius: 50%;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p { color: var(--text-muted); font-size: 15px; max-width: 600px; }
+  .hero .tags { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+  .hero .tag {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 48px 0 24px;
+  }
+  .section-num {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: #fff;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, var(--border), transparent);
+    margin-bottom: 28px;
+  }
+
+  /* ── TOPIC COLUMNS ── */
+  .topic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .topic-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .topic-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .html-badge {
+    background: rgba(247,106,106,0.15);
+    color: var(--html-color);
+    border: 1px solid rgba(247,106,106,0.3);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 11px;
+  }
+  .css-badge {
+    background: rgba(106,247,176,0.15);
+    color: var(--css-color);
+    border: 1px solid rgba(106,247,176,0.3);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 11px;
+  }
+  .topic-card ul { list-style: none; }
+  .topic-card ul li {
+    padding: 5px 0;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .topic-card ul li::before {
+    content: '›';
+    color: var(--accent);
+    font-size: 16px;
+    flex-shrink: 0;
+    line-height: 1.5;
+  }
+
+  /* ── TAG CARDS ── */
+  .tag-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .tag-card .tag-name {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
+    color: var(--html-color);
+    background: rgba(247,106,106,0.1);
+    border: 1px solid rgba(247,106,106,0.2);
+    border-radius: 6px;
+    padding: 6px 10px;
+    display: inline-block;
+    word-break: break-all;
+  }
+  .tag-card .tag-info { font-size: 13.5px; }
+  .tag-card .tag-use {
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .tag-card .tag-example {
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12px;
+    color: #a8d4ff;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  /* ── DEFINITIONS ── */
+  .def-card {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+  }
+  .def-card .def-term {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .def-card .def-text {
+    color: var(--text-muted);
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+
+  /* ── CODE BLOCKS ── */
+  .code-section { margin-bottom: 24px; }
+  .code-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .html-label { background: rgba(247,106,106,0.15); color: var(--html-color); }
+  .css-label { background: rgba(106,247,176,0.15); color: var(--css-color); }
+  .code-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  pre {
+    background: #0a0b14;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12.5px;
+    color: #cdd6f4;
+    overflow-x: auto;
+    line-height: 1.7;
+    white-space: pre;
+    margin-bottom: 16px;
+  }
+  pre .kw { color: #cba6f7; }
+  pre .str { color: #a6e3a1; }
+  pre .tag { color: #89dceb; }
+  pre .attr { color: #fab387; }
+  pre .val { color: #a6e3a1; }
+  pre .com { color: #6c7086; font-style: italic; }
+  pre .prop { color: #89b4fa; }
+  pre .num { color: #f9e2af; }
+
+  /* ── Q&A ── */
+  .qa-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .qa-q {
+    background: var(--surface2);
+    padding: 16px 22px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--accent4);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .qa-q .q-icon {
+    background: rgba(247,197,106,0.2);
+    color: var(--accent4);
+    width: 22px; height: 22px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .qa-a {
+    padding: 16px 22px;
+    color: var(--text-muted);
+    font-size: 13.5px;
+    line-height: 1.8;
+    border-top: 1px solid var(--border);
+  }
+  .qa-a ul { padding-left: 18px; margin-top: 6px; }
+  .qa-a ul li { margin-bottom: 4px; }
+  .qa-a table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  .qa-a table th {
+    background: var(--surface2);
+    color: var(--text);
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid var(--border);
+  }
+  .qa-a table td {
+    padding: 7px 12px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  /* ── NOTES CARDS ── */
+  .note-card {
+    background: rgba(124,106,247,0.06);
+    border: 1px solid rgba(124,106,247,0.2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+  .note-card strong { color: var(--accent); }
+
+  .warn-card {
+    background: rgba(247,106,106,0.06);
+    border: 1px solid rgba(247,106,106,0.2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+  .warn-card strong { color: var(--html-color); }
+
+  .tip-card {
+    background: rgba(106,247,176,0.06);
+    border: 1px solid rgba(106,247,176,0.2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+  .tip-card strong { color: var(--css-color); }
+
+  /* ── TABLE ── */
+  .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 13.5px;
+  }
+  .styled-table th {
+    background: var(--surface2);
+    color: var(--text);
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid var(--border);
+    font-weight: 600;
+  }
+  .styled-table td {
+    padding: 9px 14px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    vertical-align: top;
+  }
+  .styled-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  .styled-table code {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12px;
+    background: var(--tag-bg);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: #89dceb;
+  }
+
+  code {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12.5px;
+    background: var(--tag-bg);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: #89dceb;
+  }
+
+  .section-num-html {
+    background: rgba(247,106,106,0.15);
+    color: var(--html-color);
+  }
+
+  .section-num-accent {
+    background: rgba(124,106,247,0.15);
+    color: var(--accent);
+  }
+
+  .section-num-accent4 {
+    background: rgba(247,197,106,0.15);
+    color: var(--accent4);
+  }
+
+  .section-num-css {
+    background: rgba(106,247,176,0.15);
+    color: var(--css-color);
+  }
+
+  .text-muted-small {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .text-muted-spacing {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin: 20px 0 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px; }
+    .topic-grid { grid-template-columns: 1fr; }
+    .tag-card { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="logo">
+    <h2>UID Study Guide</h2>
+    <p>Unit 1 &amp; Unit 2 | Exam Ready</p>
+  </div>
+  <div class="nav-section">Contents</div>
+  <a href="#topics">🗂 Topics &amp; Subtopics</a>
+  <a href="#tags">🏷 HTML Tags</a>
+  <a href="#definitions">📖 Definitions</a>
+  <a href="#html-codes">💻 HTML Code Snippets</a>
+  <a href="#css-codes">🎨 CSS Code Snippets</a>
+  <a href="#qa">❓ Q &amp; A</a>
+  <a href="#notes">📌 Important Notes</a>
+  <div class="nav-section">Quick Jump</div>
+  <a href="#unit1-html">Unit 1 – HTML</a>
+  <a href="#unit1-css">Unit 1 – CSS</a>
+  <a href="#unit2-css">Unit 2 – CSS Box Model</a>
+  <a href="#transitions">Transitions</a>
+  <a href="#transforms">Transforms</a>
+  <a href="#animations">Animations</a>
+  <a href="#vcs">Version Control</a>
+</nav>
+
+<!-- MAIN -->
+<div id="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>User Interface Design<br><span>Exam Study Guide</span></h1>
+    <p>Complete extraction of all academic content from the PPT — Unit 1 &amp; Unit 2 (Mid). Structured for fast revision and exam preparation.</p>
+    <div class="tags">
+      <span class="tag">Dr. B Raj Kumar</span>
+      <span class="tag">Dept. of CS</span>
+      <span class="tag">Unit 1 · Internet &amp; HTML</span>
+      <span class="tag">Unit 2 · CSS Box Model, Transforms, Animations</span>
+      <span class="tag">Version Control / Git</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 1 — TOPICS & SUBTOPICS
+  ══════════════════════════════════════════ -->
+  <div id="topics" class="section-header">
+    <div class="section-num section-num-html">1</div>
+    <h2>Topics &amp; Subtopics</h2>
+  </div>
+  <div class="divider"></div>
+
+  <div class="topic-grid">
+    <!-- HTML TOPICS -->
+    <div id="unit1-html" class="topic-card">
+      <h3><span class="html-badge">HTML</span> Unit 1 Topics</h3>
+      <ul>
+        <li>What is Internet? History of Internet (ARPANET, TCP/IP, WWW)</li>
+        <li>World Wide Web (WWW) – Hypertext &amp; Hyperlinks</li>
+        <li>URL – Uniform Resource Locator</li>
+        <li>What is a Web Server? (HTTP, SMTP, FTP)</li>
+        <li>What is HTML? – Definition, Structure</li>
+        <li>HTML Page Structure (DOCTYPE, html, head, body)</li>
+        <li>HTML Elements and Attributes</li>
+        <li>Designing First HTML Web Page</li>
+        <li>HTML Headings (&lt;h1&gt; to &lt;h6&gt;)</li>
+        <li>HTML Paragraphs (&lt;p&gt;)</li>
+        <li>HTML Horizontal Rules (&lt;hr&gt;)</li>
+        <li>HTML Line Breaks (&lt;br&gt;)</li>
+        <li>HTML Comments</li>
+        <li>HTML Text Formatting Elements (b, strong, i, mark, u, del, sub, sup)</li>
+        <li>HTML Colors – Named, RGB, HEX</li>
+        <li>HTML Style Attribute – background-color, color, font, size, alignment</li>
+        <li>HTML Images (&lt;img&gt; – src, alt, width, height)</li>
+        <li>HTML Links / Hyperlinks (&lt;a&gt; – href)</li>
+        <li>HTML Tables (table, tr, th, td, colspan, rowspan, cellpadding, cellspacing)</li>
+        <li>HTML Lists – Unordered, Ordered, Nested</li>
+        <li>HTML Forms – Form elements, Input types, Attributes</li>
+        <li>Input Types: text, password, email, number, date, radio, checkbox, file, range, color, search, reset, submit, button, hidden</li>
+        <li>Form Elements: input, label, select, option, textarea, button, fieldset, legend, datalist, output</li>
+        <li>HTML Input Attributes: readonly, disabled, size, min, max, required, placeholder</li>
+        <li>Background Image for Webpage</li>
+        <li>Marquee Tag (obsolete)</li>
+        <li>HTML Div Element (&lt;div&gt;)</li>
+        <li>HTML iframe (Inline Frame)</li>
+        <li>SVG – Scalable Vector Graphics (rect, circle, line, polygon)</li>
+        <li>HTML Multimedia – Video and Audio (&lt;video&gt;, &lt;audio&gt;)</li>
+      </ul>
+    </div>
+    <!-- CSS TOPICS -->
+    <div id="unit1-css" class="topic-card">
+      <h3><span class="css-badge">CSS</span> Unit 1 &amp; 2 Topics</h3>
+      <ul>
+        <li>What is CSS? Types: Inline, Internal, External</li>
+        <li>CSS Selectors: Element, ID, Class, Universal, Grouping</li>
+        <li>CSS Properties (228+)</li>
+        <li>CSS Text Properties: color, background-color, text-align, text-decoration, text-transform, text-shadow</li>
+        <li>CSS List Property: list-style-type</li>
+        <li>CSS Border Property: border-color, border-width, border-style</li>
+        <li>CSS Font Property: font-style, font-weight, font-size, font-family</li>
+        <li>CSS Background Property: background-color, opacity, background-image, background-repeat, background-position, background-size, background-attachment</li>
+        <li>CSS Float Property (left, right, none, inherit)</li>
+        <li>CSS Align – Horizontal &amp; Vertical Centering</li>
+        <li>Flexbox Layout (display:flex, flex-direction, flex-wrap, justify-content, align-items, align-content)</li>
+        <li>CSS Grid Layout (display:grid, grid-template-columns/rows/areas, gap, grid-area)</li>
+        <li>Responsive Web Design (RWD)</li>
+        <li id="unit2-css">CSS Box Model (Content, Padding, Border, Margin)</li>
+        <li>Padding Properties (padding-top, right, bottom, left)</li>
+        <li>Margin Properties (margin-top, right, bottom, left)</li>
+        <li>Calculating overall dimensions of an element</li>
+        <li>CSS Position Property (static, relative, fixed, absolute, sticky)</li>
+        <li id="transitions">CSS Transitions (transition, transition-delay, transition-duration, transition-property, transition-timing-function)</li>
+        <li id="transforms">CSS Transform Property (translate, rotate, scale, skew, transform-origin, matrix, combining transforms)</li>
+        <li id="animations">CSS Animations (@keyframes, animation-name, animation-duration, animation-delay, animation-direction, animation-iteration-count, animation-timing-function, animation-fill-mode)</li>
+        <li>Version Control Systems (Local, Centralized, Distributed)</li>
+        <li id="vcs">Git Basics (init, add, commit, push, pull, clone, branch, merge)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 2 — HTML TAGS
+  ══════════════════════════════════════════ -->
+  <div id="tags" class="section-header">
+    <div class="section-num section-num-html">2</div>
+    <h2>HTML Tags — All Covered in PPT</h2>
+  </div>
+  <div class="divider"></div>
+
+  <!-- Structure Tags -->
+  <p class="text-muted-small">Structure &amp; Layout</p>
+
+  <div class="tag-card">
+    <span class="tag-name">&lt;!DOCTYPE html&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Defines the document type and version of HTML being used.</div>
+      <div class="tag-example">&lt;!DOCTYPE html&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;html&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Root element of every HTML page.</div>
+      <div class="tag-example">&lt;html&gt; ... &lt;/html&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;head&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Contains meta information about the HTML page (not visible on page).</div>
+      <div class="tag-example">&lt;head&gt;&lt;title&gt;Page&lt;/title&gt;&lt;/head&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;title&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Sets the title of the HTML page (shown in browser tab).</div>
+      <div class="tag-example">&lt;title&gt;My Page&lt;/title&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;body&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Container for all visible content on the web page.</div>
+      <div class="tag-example">&lt;body&gt; visible content here &lt;/body&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;div&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Defines a division or section — used as a generic container for HTML elements.</div>
+      <div class="tag-example">&lt;div style="color:red;"&gt;Content&lt;/div&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;link&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Used to connect external resources (like CSS files) to an HTML document.</div>
+      <div class="tag-example">&lt;link rel="stylesheet" href="style.css"&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;style&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Defines internal CSS styles within the HTML document's head section.</div>
+      <div class="tag-example">&lt;style&gt; p { color: red; } &lt;/style&gt;</div>
+    </div>
+  </div>
+
+  <p class="text-muted-spacing">Text &amp; Formatting</p>
+
+  <div class="tag-card">
+    <span class="tag-name">&lt;h1&gt; – &lt;h6&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Heading tags — h1 is most important, h6 is least important.</div>
+      <div class="tag-example">&lt;h1&gt;Main Heading&lt;/h1&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;p&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Defines a paragraph. Always starts on a new line.</div>
+      <div class="tag-example">&lt;p&gt;This is a paragraph.&lt;/p&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;br&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Inserts a line break within text (self-closing tag).</div>
+      <div class="tag-example">&lt;p&gt;Line one&lt;br&gt;Line two&lt;/p&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;hr&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Creates a horizontal rule (line) to separate content sections.</div>
+      <div class="tag-example">&lt;p&gt;Para 1&lt;/p&gt;&lt;hr&gt;&lt;p&gt;Para 2&lt;/p&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;b&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Makes text bold (purely visual).</div>
+      <div class="tag-example">&lt;b&gt;Bold Text&lt;/b&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;strong&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Makes text bold with semantic importance.</div>
+      <div class="tag-example">&lt;strong&gt;Important Text&lt;/strong&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;i&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Makes text italic.</div>
+      <div class="tag-example">&lt;i&gt;Italic Text&lt;/i&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;mark&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Highlights (marks) text with a background color.</div>
+      <div class="tag-example">&lt;mark&gt;Highlighted&lt;/mark&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;u&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Underlines the text.</div>
+      <div class="tag-example">&lt;u&gt;Underlined Text&lt;/u&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;del&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Strikes a line through deleted/removed text.</div>
+      <div class="tag-example">&lt;del&gt;Deleted Text&lt;/del&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;sub&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Displays text as subscript (below the baseline).</div>
+      <div class="tag-example">H&lt;sub&gt;2&lt;/sub&gt;O</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;sup&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Displays text as superscript (above the baseline).</div>
+      <div class="tag-example">x&lt;sup&gt;2&lt;/sup&gt;</div>
+    </div>
+  </div>
+
+  <p class="text-muted-spacing">Media, Links &amp; Embeds</p>
+
+  <div class="tag-card">
+    <span class="tag-name">&lt;img&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Embeds an image in a webpage. Uses src and alt attributes.</div>
+      <div class="tag-example">&lt;img src="photo.jpg" alt="Photo" width="300"&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;a&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Defines a hyperlink. The href attribute specifies the link destination.</div>
+      <div class="tag-example">&lt;a href="https://google.com"&gt;Google&lt;/a&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;iframe&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Embeds another webpage or external content (video, map, PDF) inside the current page.</div>
+      <div class="tag-example">&lt;iframe src="page.html" width="600" height="400"&gt;&lt;/iframe&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;video&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Used to embed a video file on a web page.</div>
+      <div class="tag-example">&lt;video controls&gt;&lt;source src="movie.mp4"&gt;&lt;/video&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;audio&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Used to embed and play an audio file on a web page.</div>
+      <div class="tag-example">&lt;audio controls&gt;&lt;source src="song.mp3"&gt;&lt;/audio&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;source&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Specifies multiple media resources for &lt;video&gt; and &lt;audio&gt; elements.</div>
+      <div class="tag-example">&lt;source src="movie.mp4" type="video/mp4"&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;svg&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Container for SVG (Scalable Vector Graphics) — vector shapes drawn with code.</div>
+      <div class="tag-example">&lt;svg width="200" height="100"&gt; ... &lt;/svg&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;marquee&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Obsolete/deprecated tag used to create scrolling text or images. Not supported in HTML5.</div>
+      <div class="tag-example">&lt;marquee direction="left"&gt;Scrolling Text&lt;/marquee&gt;</div>
+    </div>
+  </div>
+
+  <p class="text-muted-spacing">Tables</p>
+
+  <div class="tag-card">
+    <span class="tag-name">&lt;table&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Defines an HTML table with rows and columns.</div>
+      <div class="tag-example">&lt;table border="1"&gt; ... &lt;/table&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;tr&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Defines a table row inside a &lt;table&gt;.</div>
+      <div class="tag-example">&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;th&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Defines a table header cell — text is bold and centered by default.</div>
+      <div class="tag-example">&lt;th&gt;Name&lt;/th&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;td&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Defines a table data/cell — regular and left-aligned by default.</div>
+      <div class="tag-example">&lt;td&gt;Siva&lt;/td&gt;</div>
+    </div>
+  </div>
+
+  <p class="text-muted-spacing">Lists</p>
+
+  <div class="tag-card">
+    <span class="tag-name">&lt;ul&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Creates an unordered (bulleted) list.</div>
+      <div class="tag-example">&lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;ol&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Creates an ordered (numbered) list.</div>
+      <div class="tag-example">&lt;ol&gt;&lt;li&gt;Step 1&lt;/li&gt;&lt;/ol&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;li&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Defines each list item inside &lt;ul&gt; or &lt;ol&gt;.</div>
+      <div class="tag-example">&lt;li&gt;Coffee&lt;/li&gt;</div>
+    </div>
+  </div>
+
+  <p class="text-muted-spacing">Forms</p>
+
+  <div class="tag-card">
+    <span class="tag-name">&lt;form&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Used to create an HTML form for collecting user input.</div>
+      <div class="tag-example">&lt;form action="page.php" method="post"&gt; ... &lt;/form&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;input&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Most-used form element. Creates different input fields based on type attribute.</div>
+      <div class="tag-example">&lt;input type="text" name="fname" placeholder="Enter name"&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;label&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Adds a name/description to form inputs. Improves accessibility. "for" must match input "id".</div>
+      <div class="tag-example">&lt;label for="name"&gt;Name:&lt;/label&gt;&lt;input id="name"&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;select&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Creates a dropdown/select list for users to choose one option.</div>
+      <div class="tag-example">&lt;select name="branch"&gt;&lt;option value="CSE"&gt;CSE&lt;/option&gt;&lt;/select&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;option&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Defines each selectable item inside a &lt;select&gt; dropdown.</div>
+      <div class="tag-example">&lt;option value="IT"&gt;IT&lt;/option&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;textarea&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Creates a multi-line text input field (for comments, messages).</div>
+      <div class="tag-example">&lt;textarea rows="5" cols="30"&gt;&lt;/textarea&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;button&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Defines a clickable button. Always specify the type attribute.</div>
+      <div class="tag-example">&lt;button type="button" onclick="alert('Hi')"&gt;Click&lt;/button&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;fieldset&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Groups related form elements together with a visual box.</div>
+      <div class="tag-example">&lt;fieldset&gt;&lt;legend&gt;Info&lt;/legend&gt;&lt;/fieldset&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;legend&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Defines a caption/title for the &lt;fieldset&gt; element.</div>
+      <div class="tag-example">&lt;legend&gt;Personal Info&lt;/legend&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;datalist&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Provides a list of pre-defined options for an &lt;input&gt; element (like autocomplete).</div>
+      <div class="tag-example">&lt;input list="browsers"&gt;&lt;datalist id="browsers"&gt;&lt;option value="Chrome"&gt;&lt;/datalist&gt;</div>
+    </div>
+  </div>
+  <div class="tag-card">
+    <span class="tag-name">&lt;output&gt;</span>
+    <div class="tag-info">
+      <div class="tag-use">Represents the result of a calculation (used with oninput events).</div>
+      <div class="tag-example">&lt;output name="result" for="a b"&gt;&lt;/output&gt;</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 3 — DEFINITIONS
+  ══════════════════════════════════════════ -->
+  <div id="definitions" class="section-header">
+    <div class="section-num section-num-accent">3</div>
+    <h2>All Definitions</h2>
+  </div>
+  <div class="divider"></div>
+
+  <div class="def-card">
+    <div class="def-term">Internet</div>
+    <div class="def-text">The Internet is the biggest world-wide communication network of computers that connects computers all over the world, allowing people to share information and communicate from anywhere with an Internet connection. It has millions of domestic, academic, business, and government networks.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">ARPANET (Advanced Research Projects Agency Network)</div>
+    <div class="def-text">The first workable prototype of the Internet, created in the late 1960s. It allowed multiple computers to communicate on a single network.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">TCP/IP (Transmission Control Protocol / Internet Protocol)</div>
+    <div class="def-text">Developed by Robert Kahn and Vinton Cerf in the 1970s. A communications model that set standards for how data could be transmitted between multiple networks. ARPANET adopted TCP/IP on January 1, 1983.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">World Wide Web (WWW)</div>
+    <div class="def-text">Invented by Tim Berners-Lee in 1990. A collection of websites or web pages stored in web servers and connected to local computers through the Internet. WWW is an information system where documents are identified by URLs and interlinked by hypertext/hyperlinks.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">Hypertext</div>
+    <div class="def-text">A word or words that contain a link to other texts or a website. A hypertext document with its text and hyperlinks is assigned an online address called a URL.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">Hyperlink</div>
+    <div class="def-text">An icon, graphic, or text that links to another file. Web pages are connected by links called hypertext or hyperlinks and accessed using HTTP.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">URL (Uniform Resource Locator)</div>
+    <div class="def-text">An online address assigned to a web page or website. A particular collection of web pages belonging to a specific URL is called a website. Example: www.facebook.com</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">Web Server</div>
+    <div class="def-text">A computer that runs websites. Its basic objective is to store, process, and deliver web pages to users using Hypertext Transfer Protocol (HTTP). It also supports SMTP (email) and FTP (file transfer).</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">HTML (Hyper Text Markup Language)</div>
+    <div class="def-text">The standard markup language for creating web pages. HTML describes the structure of a web page using a series of elements that tell the browser how to display content.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">HTML Element</div>
+    <div class="def-text">Defined by a start tag, some content, and an end tag: &lt;tagname&gt;Content goes here...&lt;/tagname&gt;</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">HTML Attributes</div>
+    <div class="def-text">Additional information provided for HTML elements. Always specified in the start tag. Come in name/value pairs: name="value". Example: &lt;tagname attribute="value"&gt;</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">CSS (Cascading Style Sheets)</div>
+    <div class="def-text">Used to format the layout of a webpage (presentation). Controls color, font, text size, spacing, element positioning, background, and display on different screen sizes. CSS saves work — it can control the layout of multiple web pages at once. The word "cascading" means a style applied to a parent element also applies to all children elements.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">Inline CSS</div>
+    <div class="def-text">Applied to a single HTML element using the style attribute. Example: &lt;p style="color:red;"&gt;</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">Internal CSS</div>
+    <div class="def-text">Defines style for a single HTML page. Written in the &lt;head&gt; section within a &lt;style&gt; element.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">External CSS</div>
+    <div class="def-text">Defines style for many HTML pages. A separate .css file linked with &lt;link rel="stylesheet" href="file.css"&gt; in the head section.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">SVG (Scalable Vector Graphics)</div>
+    <div class="def-text">An XML-based markup language used to create vector graphics in web pages. SVG graphics are scalable and do not lose quality when zoomed or resized. They are resolution-independent, can be styled, animated, and manipulated with JavaScript.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">iframe (Inline Frame)</div>
+    <div class="def-text">An HTML element used to embed another webpage or external content (websites, YouTube videos, Google Maps, PDFs, documents, web apps) inside the current webpage.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">CSS Box Model</div>
+    <div class="def-text">A box that wraps around every HTML element consisting of four parts: Content (text/images), Padding (space around content, transparent), Border (surrounds padding and content), and Margin (space outside border, transparent).</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">CSS Float</div>
+    <div class="def-text">A property that specifies how an element should float within its container, placing it on the left or right side, allowing text and inline elements to wrap around it. Values: left, right, none, inherit.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">Responsive Web Design (RWD)</div>
+    <div class="def-text">An approach to web development where a website automatically adjusts its layout, images, and content to fit different screen sizes and devices.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">CSS Flexbox</div>
+    <div class="def-text">A layout model for arranging items (horizontally or vertically) within a container in a flexible and responsive way. Used for one-dimensional layout (rows OR columns).</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">CSS Grid</div>
+    <div class="def-text">A grid-based layout system with rows and columns that allows developers to create complex web layouts. Used for two-dimensional layout (rows AND columns).</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">CSS Transition</div>
+    <div class="def-text">Allows the change of property values smoothly over a given duration (e.g., when hovering). Requires: the CSS property to animate and the duration of the effect.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">CSS Transform</div>
+    <div class="def-text">Modifies the appearance and position of an element without changing the actual document layout. Allows elements to be rotated, moved (translated), scaled, and skewed.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">CSS Animation / @keyframes</div>
+    <div class="def-text">CSS allows animation of HTML elements without JavaScript. @keyframes rule defines the stages of a CSS animation — how styles change at different points during the animation.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">Version Control System (VCS)</div>
+    <div class="def-text">A software tool that helps developers track changes in source code, manage different versions of files, collaborate with multiple developers, and restore previous versions when needed.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">Git</div>
+    <div class="def-text">A Distributed Version Control System (DVCS) used to track code changes, collaborate with teams, maintain project history, and revert to previous versions.</div>
+  </div>
+  <div class="def-card">
+    <div class="def-term">CSS Position Property</div>
+    <div class="def-text">Defines how an element is placed in the document. Values: static (default – normal flow), relative (offset from normal position), fixed (relative to viewport), absolute (relative to nearest positioned ancestor), sticky (relative until scroll reaches it, then fixed).</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 4 — CODE SNIPPETS
+  ══════════════════════════════════════════ -->
+  <div id="html-codes" class="section-header">
+    <div class="section-num section-num-accent4">4</div>
+    <h2>All Code Snippets</h2>
+  </div>
+  <div class="divider"></div>
+
+  <span class="code-label html-label">HTML Codes</span>
+
+  <div class="code-section code-section-top">
+    <div class="code-title">Basic HTML Page Structure</div>
+    <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  My first web page
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">HTML Headings</div>
+    <pre>&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">HTML Text Formatting Elements</div>
+    <pre>&lt;p&gt;&lt;b&gt;Bold text&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Strong (important) text&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Italic text&lt;/i&gt;&lt;/p&gt;
+&lt;p&gt;This text is &lt;mark&gt;marked&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;&lt;u&gt;Underlined text&lt;/u&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;Deleted text&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;Subscript: H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+&lt;p&gt;Superscript: x&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">HTML Style Attribute — Background, Color, Font, Alignment</div>
+    <pre>&lt;!-- Background Color for Page --&gt;
+&lt;body style="background-color:green;"&gt;
+
+&lt;!-- Text Color --&gt;
+&lt;h1 style="color:orange;"&gt;User Interface Design&lt;/h1&gt;
+
+&lt;!-- Font Family and Size --&gt;
+&lt;h1 style="font-family:verdana;"&gt;Amrita&lt;/h1&gt;
+&lt;h1 style="font-size:900%;"&gt;Madhu&lt;/h1&gt;
+
+&lt;!-- Text Alignment --&gt;
+&lt;h1 style="text-align:center;"&gt;Centered Heading&lt;/h1&gt;
+
+&lt;!-- Combining Multiple Styles --&gt;
+&lt;h1 style="color:orange; font-family:verdana; font-size:300%;
+           text-align:center; background-color:white;"&gt;
+  User Interface Design
+&lt;/h1&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">HTML Image</div>
+    <pre>&lt;img src="imagename.jpg" alt="Flowers" width="460" height="345"&gt;
+&lt;img src="imagename.jpg" alt="Cars" style="width:500px;height:600px;"&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">HTML Link (Hyperlink)</div>
+    <pre>&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">HTML Table with colspan and rowspan</div>
+    <pre>&lt;table width="420" border="1" cellpadding="25" cellspacing="10"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;th&gt;Branch&lt;/th&gt;
+    &lt;th&gt;Cell Number&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Siva&lt;/td&gt;
+    &lt;td&gt;IT&lt;/td&gt;
+    &lt;td&gt;9989878787&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td colspan="2"&gt;IT&lt;/td&gt;      &lt;!-- spans 2 columns --&gt;
+    &lt;td rowspan="2"&gt;ECE&lt;/td&gt;    &lt;!-- spans 2 rows --&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">HTML Lists — Unordered, Ordered, Nested</div>
+    <pre>&lt;!-- Unordered List --&gt;
+&lt;ul&gt;
+  &lt;li&gt;Coffee&lt;/li&gt;
+  &lt;li&gt;Tea&lt;/li&gt;
+  &lt;li&gt;Milk&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Ordered List --&gt;
+&lt;ol&gt;
+  &lt;li&gt;Coffee&lt;/li&gt;
+  &lt;li&gt;Tea&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Nested List --&gt;
+&lt;ol&gt;
+  &lt;li&gt;Programming Languages
+    &lt;ul&gt;
+      &lt;li&gt;Python&lt;/li&gt;
+      &lt;li&gt;Java&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Web Technologies
+    &lt;ul&gt;
+      &lt;li&gt;HTML&lt;/li&gt;
+      &lt;li&gt;CSS&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">Complete HTML Form (All Elements)</div>
+    <pre>&lt;html&gt;
+&lt;body&gt;
+&lt;h2&gt;HTML Forms&lt;/h2&gt;
+&lt;form action="destination_file"&gt;
+
+  First name: &lt;input type="text" name="fname"&gt;&lt;br&gt;&lt;br&gt;
+  Last name:  &lt;input type="text" name="lname"&gt;&lt;br&gt;&lt;br&gt;
+  Password:   &lt;input type="password" name="pass"&gt;&lt;br&gt;&lt;br&gt;
+
+  Gender:&lt;br&gt;
+  &lt;input type="radio" name="gender"&gt;Male&lt;br&gt;
+  &lt;input type="radio" name="gender"&gt;Female&lt;br&gt;&lt;br&gt;
+
+  Hobbies:
+  &lt;input type="checkbox" name="read"&gt;Reading
+  &lt;input type="checkbox" name="dance"&gt;Dancing&lt;br&gt;&lt;br&gt;
+
+  Branch:
+  &lt;select name="branch"&gt;
+    &lt;option value=""&gt;Select&lt;/option&gt;
+    &lt;option value="IT"&gt;IT&lt;/option&gt;
+    &lt;option value="CSE"&gt;CSE&lt;/option&gt;
+  &lt;/select&gt;&lt;br&gt;&lt;br&gt;
+
+  Date of Birth: &lt;input type="date" name="dob"&gt;&lt;br&gt;&lt;br&gt;
+  Upload file:   &lt;input type="file" name="filename"&gt;&lt;br&gt;&lt;br&gt;
+  Rating:        &lt;input type="range" name="rangevalue"&gt;&lt;br&gt;&lt;br&gt;
+  Select Color:  &lt;input type="color" name="color"&gt;&lt;br&gt;&lt;br&gt;
+
+  &lt;input type="submit" value="Submit form"&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">File Upload Input (Single &amp; Multiple)</div>
+    <pre>&lt;!-- Single file upload --&gt;
+&lt;input type="file" id="myfile" name="myfile"&gt;
+
+&lt;!-- Multiple file upload --&gt;
+&lt;input type="file" id="myfile" name="myfile" multiple&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">Label + Input (Linked by for/id)</div>
+    <pre>&lt;label for="fname"&gt;First name:&lt;/label&gt;
+&lt;input type="text" id="fname" name="fname"&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">Datalist (Autocomplete)</div>
+    <pre>&lt;input list="browsers" name="browser"&gt;
+&lt;datalist id="browsers"&gt;
+  &lt;option value="Chrome"&gt;
+  &lt;option value="Firefox"&gt;
+  &lt;option value="Safari"&gt;
+  &lt;option value="Edge"&gt;
+&lt;/datalist&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">Output Element (Calculation Result)</div>
+    <pre>&lt;form oninput="x.value=parseInt(a.value)+parseInt(b.value)"&gt;
+  0 &lt;input type="range" id="a" name="a" value="50"&gt; 100
+  + &lt;input type="number" id="b" name="b" value="50"&gt;
+  = &lt;output name="x" for="a b"&gt;&lt;/output&gt;
+  &lt;input type="submit"&gt;
+&lt;/form&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">Marquee</div>
+    <pre>&lt;marquee direction="right" scrollamount="10" width="60%" height="100px"&gt;
+  Amrita Vishwa Vidyapeetham
+&lt;/marquee&gt;
+&lt;marquee direction="left"&gt;Scrolling Left&lt;/marquee&gt;
+&lt;marquee direction="up"&gt;Scrolling Up&lt;/marquee&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">Div with Inline CSS</div>
+    <pre>&lt;div style="width:300px; margin:auto; border:2px solid #2c3e50;
+            background-color:#f2f6fc; padding:15px;
+            text-align:center; border-radius:10px;"&gt;
+  &lt;h2&gt;Andhra Pradesh&lt;/h2&gt;
+  &lt;p&gt;Amaravati&lt;/p&gt;
+&lt;/div&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">iframe Examples</div>
+    <pre>&lt;!-- Load local HTML page --&gt;
+&lt;iframe src="Forms.html" width="600" height="400"&gt;&lt;/iframe&gt;
+
+&lt;!-- Load external website --&gt;
+&lt;iframe src="https://www.wikipedia.org" width="600" height="400"&gt;&lt;/iframe&gt;
+
+&lt;!-- Two iframes side by side with Flexbox --&gt;
+&lt;div style="display:flex; gap:20px; flex-wrap:wrap;"&gt;
+  &lt;iframe src="login.html" width="100%" height="300" style="flex:1; min-width:300px;"&gt;&lt;/iframe&gt;
+  &lt;iframe src="register.html" width="100%" height="300" style="flex:1; min-width:300px;"&gt;&lt;/iframe&gt;
+&lt;/div&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">SVG — Rectangle, Circle, Line, Polygon</div>
+    <pre>&lt;!-- Rectangle --&gt;
+&lt;svg width="300" height="200"&gt;
+  &lt;rect x="50" y="50" width="150" height="100"
+        fill="blue" stroke="Red" stroke-width="3"/&gt;
+&lt;/svg&gt;
+
+&lt;!-- Circle --&gt;
+&lt;svg width="300" height="200"&gt;
+  &lt;circle cx="150" cy="100" r="60"
+          fill="red" stroke="black" stroke-width="4"/&gt;
+&lt;/svg&gt;
+
+&lt;!-- Line --&gt;
+&lt;svg width="300" height="200"&gt;
+  &lt;line x1="10" y1="10" x2="250" y2="150"
+        stroke="green" stroke-width="5"/&gt;
+&lt;/svg&gt;
+
+&lt;!-- Rounded Rectangle with Opacity --&gt;
+&lt;svg width="400" height="180"&gt;
+  &lt;rect x="50" y="20" rx="20" ry="20" width="150" height="150"
+        style="fill:green;stroke:black;stroke-width:5;opacity:0.5"/&gt;
+&lt;/svg&gt;
+
+&lt;!-- Polygon --&gt;
+&lt;svg width="300" height="200"&gt;
+  &lt;polygon points="100,10 40,198 190,78 10,78 160,198"
+           style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;"/&gt;
+&lt;/svg&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">HTML Video and Audio</div>
+    <pre>&lt;!-- Video --&gt;
+&lt;video width="320" height="240" controls&gt;
+  &lt;source src="movie.mp4" type="video/mp4"&gt;
+  &lt;source src="movie.ogg" type="video/ogg"&gt;
+&lt;/video&gt;
+
+&lt;!-- Audio --&gt;
+&lt;audio controls&gt;
+  &lt;source src="horse.ogg" type="audio/ogg"&gt;
+  &lt;source src="horse.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</pre>
+  </div>
+
+  <!-- CSS CODES -->
+  <div class="css-codes-spacing"></div>
+  <span class="code-label css-label">CSS Codes</span>
+
+  <div class="code-section code-section-top">
+    <div class="code-title">CSS Selectors</div>
+    <pre>/* Element Selector */
+p { text-align: center; color: red; }
+
+/* ID Selector */
+#para1 { text-align: center; color: red; }
+
+/* Class Selector */
+.center { text-align: center; color: red; }
+
+/* Universal Selector */
+* { text-align: center; color: blue; }
+
+/* Grouping Selector */
+h1, h2, p { text-align: center; color: red; }</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">Internal CSS Example</div>
+    <pre>&lt;head&gt;
+&lt;style&gt;
+  body { background-color: powderblue; }
+  h1   { color: blue; }
+  p    { color: red; font-family: broadway; font-size: 200%; }
+&lt;/style&gt;
+&lt;/head&gt;</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">External CSS Linking</div>
+    <pre>&lt;!-- In HTML file --&gt;
+&lt;link rel="stylesheet" href="mycss.css"&gt;
+
+/* mycss.css file */
+p {
+  color: blue;
+  font-family: broadway;
+  font-size: 300%;
+}</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">CSS Float (Image Right, Divs Side by Side)</div>
+    <pre>/* Float image to right */
+img { float: right; margin-left: 15px; width: 200px; }
+
+/* Three divs side by side */
+div { float: left; padding: 15px; }
+.div1 { background: red; }
+.div2 { background: yellow; }
+.div3 { background: green; }</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">CSS Flexbox — Centering &amp; Container</div>
+    <pre>/* Flex container */
+.container {
+  display: flex;
+  background-color: DodgerBlue;
+}
+
+/* Center horizontally and vertically */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  border: 3px solid green;
+}
+
+/* Flex properties */
+.flex-box {
+  display: flex;
+  flex-direction: row;        /* row | column | row-reverse | column-reverse */
+  flex-wrap: wrap;            /* nowrap | wrap | wrap-reverse */
+  justify-content: center;   /* flex-start | flex-end | center | space-between */
+  align-items: center;       /* flex-start | flex-end | center | stretch */
+  gap: 20px;
+}</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">CSS Grid Layout</div>
+    <pre>.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;  /* 3 equal columns */
+  gap: 10px;
+  background-color: lightgray;
+  padding: 10px;
+}
+
+/* Named Areas */
+.container {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sale sale"
+    "sidebar products"
+    "footer footer";
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 50px;
+  column-gap: 50px;
+}
+
+/* Assign item to named area */
+.header  { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.footer  { grid-area: footer; }</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">CSS Box Model — Padding &amp; Margin</div>
+    <pre>div {
+  border: 1px solid black;
+  background-color: lightblue;
+
+  /* Individual padding */
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+  /* shorthand: padding: 50px 30px 50px 80px; (top right bottom left) */
+
+  /* Individual margin */
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 80px;
+  /* shorthand: margin: 100px 150px 100px 80px; */
+}</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">CSS Position Values</div>
+    <pre>/* Static — default, ignores top/left/right/bottom */
+div.static { position: static; }
+
+/* Relative — moves relative to original position */
+div.relative { position: relative; left: 30px; }
+
+/* Fixed — stays in same place even when scrolling */
+div.fixed { position: fixed; bottom: 0; right: 0; width: 300px; }
+
+/* Absolute — relative to nearest positioned ancestor */
+div.absolute { position: absolute; top: 80px; right: 0; }
+
+/* Sticky — relative until scroll, then fixed */
+div.sticky { position: sticky; top: 0; }</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">CSS Transitions</div>
+    <pre>/* Basic transition */
+div {
+  width: 100px; height: 100px; background: red;
+  transition: width 2s, height 4s;
+}
+div:hover { width: 300px; height: 200px; }
+
+/* Individual transition properties */
+div {
+  transition-property: width;
+  transition-duration: 5s;
+  transition-delay: 2s;
+  transition-timing-function: linear;
+  /* ease | linear | ease-in | ease-out | ease-in-out */
+}</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">CSS Transforms (translate, rotate, scale, skew)</div>
+    <pre>/* Translate — moves element */
+.box { transform: translate(100px, 50px); }
+
+/* Rotate — rotates element */
+.box { transform: rotate(45deg); }
+
+/* Scale — resizes element */
+.box { transform: scale(1.5); }  /* scale(x, y) */
+
+/* Skew — tilts element */
+.box { transform: skew(20deg, 10deg); }
+
+/* Transform Origin */
+.box {
+  transform-origin: left Top;
+  transform: rotate(45deg);
+}
+
+/* Combining Multiple Transforms */
+.box { transform: translate(100px,50px) rotate(30deg) scale(1.2); }</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">CSS Animations with @keyframes</div>
+    <pre>/* Basic color animation */
+div {
+  animation-name: example;
+  animation-duration: 4s;
+}
+@keyframes example {
+  from { background-color: red; }
+  to   { background-color: yellow; }
+}
+
+/* Multi-step animation with movement */
+@keyframes myAnimation {
+  0%   { background-color:red;    left:0px;   top:0px; }
+  25%  { background-color:yellow; left:200px; top:0px; }
+  50%  { background-color:blue;   left:200px; top:200px; }
+  75%  { background-color:green;  left:0px;   top:200px; }
+  100% { background-color:red;    left:0px;   top:0px; }
+}
+
+/* All animation properties */
+div {
+  animation-name: example;
+  animation-duration: 4s;
+  animation-delay: 2s;
+  animation-iteration-count: 3;   /* or infinite */
+  animation-direction: alternate; /* normal|reverse|alternate|alternate-reverse */
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;  /* none|forwards|backwards|both */
+}</pre>
+  </div>
+
+  <div class="code-section">
+    <div class="code-title">Card Layout using Div + CSS (Lab Example)</div>
+    <pre>&lt;style&gt;
+  .card-container {
+    display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+  }
+  .card {
+    background: white; width: 250px; padding: 20px;
+    border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .card button {
+    background: #2563eb; color: white; border: none;
+    padding: 10px 15px; border-radius: 5px; cursor: pointer;
+  }
+  .card button:hover { background: #1e40af; }
+&lt;/style&gt;
+&lt;div class="card-container"&gt;
+  &lt;div class="card"&gt;
+    &lt;h3&gt;Web Design&lt;/h3&gt;
+    &lt;p&gt;Modern and responsive designs.&lt;/p&gt;
+    &lt;button&gt;Learn More&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 5 — Q & A
+  ══════════════════════════════════════════ -->
+  <div id="qa" class="section-header">
+    <div class="section-num section-num-css">5</div>
+    <h2>Questions &amp; Exam-Ready Answers</h2>
+  </div>
+  <div class="divider"></div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What is the Internet?</div>
+    <div class="qa-a">The Internet is the biggest world-wide communication network of computers. It connects computers all over the world, allowing people to share information and communicate from anywhere. It has millions of smaller domestic, academic, business, and government networks that carry many different kinds of information.</div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What is ARPANET? When was it created?</div>
+    <div class="qa-a">ARPANET stands for Advanced Research Projects Agency Network. It was the first workable prototype of the Internet, created in the late 1960s. It allowed multiple computers to communicate on a single network.</div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What is TCP/IP? Who developed it?</div>
+    <div class="qa-a">TCP/IP stands for Transmission Control Protocol and Internet Protocol. It was developed by scientists Robert Kahn and Vinton Cerf in the 1970s. It is a communications model that set standards for how data could be transmitted between multiple networks. ARPANET officially adopted TCP/IP on January 1, 1983.</div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What is the World Wide Web (WWW)? Who invented it?</div>
+    <div class="qa-a">The World Wide Web was invented by Tim Berners-Lee in 1990. It is a collection of websites or web pages stored in web servers and connected to local computers through the internet. WWW is an information system where documents are identified by URLs and interlinked by hypertext/hyperlinks. It is like a huge electronic book whose pages are stored on multiple web servers across the world.</div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What is a Web Server?</div>
+    <div class="qa-a">A web server is a computer that runs websites. Its basic objective is to store, process, and deliver web pages to users using Hypertext Transfer Protocol (HTTP). Apart from HTTP, it also supports SMTP (Simple Mail Transfer Protocol) for emailing and FTP (File Transfer Protocol) for file transfer and storage.</div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What is HTML? List its features.</div>
+    <div class="qa-a">HTML stands for Hyper Text Markup Language. It is the standard markup language for creating web pages.<br><br>Features:
+      <ul>
+        <li>HTML describes the structure of a web page</li>
+        <li>HTML consists of a series of elements</li>
+        <li>HTML elements tell the browser how to display content</li>
+        <li>It uses tags like &lt;h1&gt;, &lt;p&gt;, &lt;img&gt;, etc.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What are HTML Attributes? Give examples.</div>
+    <div class="qa-a">HTML Attributes provide additional information about elements. Key points:
+      <ul>
+        <li>All HTML elements can have attributes</li>
+        <li>Always specified in the start tag</li>
+        <li>Come in name/value pairs: name="value"</li>
+      </ul>
+      Examples: <code>src</code> (image source), <code>href</code> (link URL), <code>alt</code> (alternate text), <code>style</code> (inline CSS), <code>id</code>, <code>class</code>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What are the types of HTML input types? List all.</div>
+    <div class="qa-a">
+      <table>
+        <tr><th>Input Type</th><th>Purpose</th></tr>
+        <tr><td><code>text</code></td><td>Text entry (names, email)</td></tr>
+        <tr><td><code>password</code></td><td>Hidden characters for security</td></tr>
+        <tr><td><code>email</code></td><td>Validates email format</td></tr>
+        <tr><td><code>number</code></td><td>Numeric values only</td></tr>
+        <tr><td><code>date</code></td><td>Date picker calendar</td></tr>
+        <tr><td><code>radio</code></td><td>Select one from a group</td></tr>
+        <tr><td><code>checkbox</code></td><td>Select multiple options</td></tr>
+        <tr><td><code>file</code></td><td>Upload files</td></tr>
+        <tr><td><code>range</code></td><td>Slider for value range</td></tr>
+        <tr><td><code>color</code></td><td>Color picker palette</td></tr>
+        <tr><td><code>search</code></td><td>Search optimized field</td></tr>
+        <tr><td><code>reset</code></td><td>Clear all form inputs</td></tr>
+        <tr><td><code>submit</code></td><td>Send form data to server</td></tr>
+        <tr><td><code>button</code></td><td>Custom actions via JS</td></tr>
+        <tr><td><code>hidden</code></td><td>Store data without displaying</td></tr>
+        <tr><td><code>time</code></td><td>Time input</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What is the difference between colspan and rowspan?</div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>colspan</strong>: The colspan attribute defines the number of <em>columns</em> a cell should span (merge horizontally). Example: <code>&lt;td colspan="2"&gt;</code></li>
+        <li><strong>rowspan</strong>: The rowspan attribute specifies the number of <em>rows</em> a cell should span (merge vertically). Example: <code>&lt;td rowspan="2"&gt;</code></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What are the three types of CSS? Explain each.</div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>Inline CSS:</strong> Applied to a single HTML element using the style attribute. e.g., <code>&lt;p style="color:red;"&gt;</code></li>
+        <li><strong>Internal CSS:</strong> Defined in the &lt;head&gt; section using &lt;style&gt; tag. Applies to the single HTML page.</li>
+        <li><strong>External CSS:</strong> Written in a separate .css file, linked using <code>&lt;link rel="stylesheet" href="style.css"&gt;</code>. Controls multiple pages at once.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What are the CSS Selectors? Explain each type.</div>
+    <div class="qa-a">
+      <table>
+        <tr><th>Selector</th><th>Syntax</th><th>Purpose</th></tr>
+        <tr><td>Element</td><td><code>p { }</code></td><td>Selects all &lt;p&gt; elements</td></tr>
+        <tr><td>ID</td><td><code>#para1 { }</code></td><td>Selects unique element by id</td></tr>
+        <tr><td>Class</td><td><code>.center { }</code></td><td>Selects elements with class</td></tr>
+        <tr><td>Universal</td><td><code>* { }</code></td><td>Selects ALL elements on page</td></tr>
+        <tr><td>Grouping</td><td><code>h1, h2, p { }</code></td><td>Applies same style to multiple elements</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What is SVG? Why is it better than regular images?</div>
+    <div class="qa-a">SVG (Scalable Vector Graphics) is an XML-based markup language for creating vector graphics in web pages.
+      <table>
+        <tr><th>SVG</th><th>JPG/PNG</th></tr>
+        <tr><td>Vector based</td><td>Pixel based</td></tr>
+        <tr><td>Scalable (no quality loss)</td><td>Loses quality when zoomed</td></tr>
+        <tr><td>Small file size for shapes</td><td>Large size for high resolution</td></tr>
+        <tr><td>Can be animated</td><td>Cannot be animated easily</td></tr>
+        <tr><td>Editable using code</td><td>Not editable</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>Explain the CSS Box Model with its four components.</div>
+    <div class="qa-a">The CSS Box Model is a box that wraps around every HTML element. It has four parts:
+      <ul>
+        <li><strong>Content:</strong> The actual data (text, images) inside the element</li>
+        <li><strong>Padding:</strong> Clears transparent space around the content (inside border)</li>
+        <li><strong>Border:</strong> A border surrounding the padding and content</li>
+        <li><strong>Margin:</strong> Clears transparent space outside the border</li>
+      </ul>
+      <br><strong>Total element width</strong> = defined width + left padding + right padding + left border + right border + left margin + right margin<br>
+      <strong>Total element height</strong> = defined height + top/bottom padding + top/bottom border + top/bottom margin
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What are the five CSS position values? Explain each.</div>
+    <div class="qa-a">
+      <table>
+        <tr><th>Value</th><th>Behavior</th></tr>
+        <tr><td><code>static</code></td><td>Default. Follows normal document flow. Ignores top/left/right/bottom.</td></tr>
+        <tr><td><code>relative</code></td><td>Positioned relative to its normal position. Space is still reserved for it.</td></tr>
+        <tr><td><code>fixed</code></td><td>Fixed relative to the viewport (stays even when scrolling). Leaves no gap.</td></tr>
+        <tr><td><code>absolute</code></td><td>Positioned relative to nearest non-static ancestor. Removed from normal flow.</td></tr>
+        <tr><td><code>sticky</code></td><td>Acts like relative until scrolled to threshold, then becomes fixed. Needs top/left.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What is CSS Flexbox vs CSS Grid?</div>
+    <div class="qa-a">
+      <table>
+        <tr><th>Flexbox</th><th>Grid</th></tr>
+        <tr><td>One-dimensional (rows OR columns)</td><td>Two-dimensional (rows AND columns)</td></tr>
+        <tr><td>display: flex</td><td>display: grid</td></tr>
+        <tr><td>justify-content (horizontal), align-items (vertical)</td><td>grid-template-columns/rows, grid-template-areas</td></tr>
+        <tr><td>Good for navigation, card rows</td><td>Good for full page layouts</td></tr>
+        <tr><td>flex-direction, flex-wrap, flex-flow</td><td>grid-area, gap, repeat()</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What is CSS Transform? List all transform functions.</div>
+    <div class="qa-a">The CSS Transform property modifies the appearance and position of an element without changing the document layout. Transform functions:
+      <ul>
+        <li><strong>translate(x, y)</strong> — Moves element horizontally/vertically</li>
+        <li><strong>rotate(angle)</strong> — Rotates element clockwise/counterclockwise (in deg/rad)</li>
+        <li><strong>scale(x, y)</strong> — Increases/decreases size</li>
+        <li><strong>skew(x-angle, y-angle)</strong> — Tilts element along X or Y axis</li>
+        <li><strong>transform-origin</strong> — Sets pivot point for transformation (default: center)</li>
+        <li><strong>matrix()</strong> — 2D matrix transformation (takes 6 values)</li>
+        <li><strong>matrix3d()</strong> — 3D matrix transformation (takes 9 values)</li>
+        <li>Multiple transforms can be combined: <code>transform: translate(100px) rotate(30deg) scale(1.2);</code></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What are the CSS animation properties? Explain animation-fill-mode.</div>
+    <div class="qa-a">
+      <table>
+        <tr><th>Property</th><th>Purpose</th></tr>
+        <tr><td><code>@keyframes</code></td><td>Defines animation stages/steps</td></tr>
+        <tr><td><code>animation-name</code></td><td>Name of the @keyframes animation</td></tr>
+        <tr><td><code>animation-duration</code></td><td>How long the animation takes (default: 0s)</td></tr>
+        <tr><td><code>animation-delay</code></td><td>Delay before animation starts</td></tr>
+        <tr><td><code>animation-iteration-count</code></td><td>Number of times to play (or infinite)</td></tr>
+        <tr><td><code>animation-direction</code></td><td>normal / reverse / alternate / alternate-reverse</td></tr>
+        <tr><td><code>animation-timing-function</code></td><td>ease / linear / ease-in / ease-out / ease-in-out</td></tr>
+        <tr><td><code>animation-fill-mode</code></td><td>Style before/after animation: none / forwards / backwards / both</td></tr>
+      </table>
+      <br><strong>animation-fill-mode values:</strong>
+      <ul>
+        <li><strong>none</strong>: No styles applied before/after animation (default)</li>
+        <li><strong>forwards</strong>: Element retains the last keyframe style after animation ends</li>
+        <li><strong>backwards</strong>: Element gets the first keyframe style during delay period</li>
+        <li><strong>both</strong>: Applies both forwards and backwards rules</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What are the Types of Version Control Systems?</div>
+    <div class="qa-a">
+      <table>
+        <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+        <tr><td>Local VCS</td><td>Tracks changes locally on one computer. Not suitable for teams.</td><td>—</td></tr>
+        <tr><td>Centralized VCS (CVCS)</td><td>Uses a central server. All developers connect to single repository. If server fails, work stops.</td><td>SVN (Subversion)</td></tr>
+        <tr><td>Distributed VCS (DVCS)</td><td>Every developer has a complete copy. No dependency on central server. Works offline. Faster.</td><td>Git, Mercurial</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>List the basic Git commands and their purposes.</div>
+    <div class="qa-a">
+      <table>
+        <tr><th>Command</th><th>Purpose</th></tr>
+        <tr><td><code>git init</code></td><td>Initializes a new Git repository</td></tr>
+        <tr><td><code>git add</code></td><td>Adds files to the staging area</td></tr>
+        <tr><td><code>git commit -m "msg"</code></td><td>Takes a snapshot of the project (saves changes)</td></tr>
+        <tr><td><code>git remote add origin &lt;url&gt;</code></td><td>Connects to remote/cloud repository</td></tr>
+        <tr><td><code>git push</code></td><td>Uploads local commits to remote repository (GitHub)</td></tr>
+        <tr><td><code>git clone &lt;url&gt;</code></td><td>Copies existing repo to local machine</td></tr>
+        <tr><td><code>git pull</code></td><td>Downloads latest changes from remote repo (use before push)</td></tr>
+        <tr><td><code>git branch</code></td><td>Shows all branches</td></tr>
+        <tr><td><code>git branch feature1</code></td><td>Creates a new branch</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What is Responsive Web Design? Why is it important?</div>
+    <div class="qa-a">Responsive Web Design (RWD) is an approach where a website automatically adjusts its layout, images, and content to fit different screen sizes and devices.<br><br>
+      <strong>Why it is important:</strong>
+      <ul>
+        <li>More than 60% of users access websites via mobile</li>
+        <li>Better User Experience</li>
+        <li>Improved SEO Ranking (Google prefers mobile-friendly sites)</li>
+        <li>Single website for all devices</li>
+        <li>Cost effective and faster development</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What are the CSS Transition timing functions?</div>
+    <div class="qa-a">
+      <table>
+        <tr><th>Value</th><th>Behavior</th></tr>
+        <tr><td><code>ease</code></td><td>Slow start → fast → slow end (default)</td></tr>
+        <tr><td><code>linear</code></td><td>Same speed from start to end</td></tr>
+        <tr><td><code>ease-in</code></td><td>Slow start</td></tr>
+        <tr><td><code>ease-out</code></td><td>Slow end</td></tr>
+        <tr><td><code>ease-in-out</code></td><td>Slow start and slow end</td></tr>
+        <tr><td><code>cubic-bezier(n,n,n,n)</code></td><td>Define custom speed curve</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="qa-q"><div class="q-icon">Q</div>What are the media/video/audio attributes?</div>
+    <div class="qa-a">
+      <table>
+        <tr><th>Attribute</th><th>Purpose</th></tr>
+        <tr><td><code>controls</code></td><td>Show media controls (play, pause, volume)</td></tr>
+        <tr><td><code>autoplay</code></td><td>Play automatically when page loads</td></tr>
+        <tr><td><code>loop</code></td><td>Repeat media continuously</td></tr>
+        <tr><td><code>muted</code></td><td>Mute sound</td></tr>
+        <tr><td><code>poster</code></td><td>Show an image before video plays</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 6 — IMPORTANT NOTES
+  ══════════════════════════════════════════ -->
+  <div id="notes" class="section-header">
+    <div class="section-num section-num-accent4">6</div>
+    <h2>Important Notes &amp; Key Points</h2>
+  </div>
+  <div class="divider"></div>
+
+  <div class="note-card"><strong>📌 History Timeline:</strong> ARPANET (late 1960s) → TCP/IP by Kahn &amp; Cerf (1970s) → ARPANET adopted TCP/IP (Jan 1, 1983) → WWW by Tim Berners-Lee (1990)</div>
+  <div class="note-card"><strong>📌 Heading Priority:</strong> &lt;h1&gt; = most important, &lt;h6&gt; = least important. Use h1 only once per page for SEO best practices.</div>
+  <div class="warn-card"><strong>⚠️ &lt;marquee&gt; is OBSOLETE:</strong> The &lt;marquee&gt; tag is deprecated and not supported in HTML5 standards. It was used for scrolling text but should not be used in modern web development.</div>
+  <div class="note-card"><strong>📌 &lt;th&gt; vs &lt;td&gt;:</strong> Text in &lt;th&gt; is <strong>bold and centered</strong> by default. Text in &lt;td&gt; is regular and <strong>left-aligned</strong> by default.</div>
+  <div class="note-card"><strong>📌 label "for" attribute:</strong> The "for" attribute of &lt;label&gt; must match the "id" of the &lt;input&gt; element for proper connection and accessibility.</div>
+  <div class="note-card"><strong>📌 select with size attribute:</strong> The size attribute on &lt;select&gt; specifies the number of visible values in the dropdown.</div>
+  <div class="note-card"><strong>📌 textarea uses rows and cols:</strong> rows = visible number of lines, cols = visible width in characters. Can also use style="width:200px; height:600px;"</div>
+  <div class="tip-card"><strong>✅ CSS Priority:</strong> Inline CSS &gt; Internal CSS &gt; External CSS (in terms of specificity, Inline overrides Internal and External)</div>
+  <div class="note-card"><strong>📌 CSS Colors — Three Ways:</strong> (1) Named: color:red; (2) RGB: rgb(255,0,0); — values 0–255 (3) HEX: #ff0000; — format #rrggbb (00 to ff)</div>
+  <div class="note-card"><strong>📌 HTML supports 140 standard color names</strong></div>
+  <div class="note-card"><strong>📌 float:left makes divs appear side by side</strong> — HTML &lt;div&gt; elements are block elements that take full width by default. float:left makes them appear next to each other.</div>
+  <div class="tip-card"><strong>✅ Flexbox vs Grid:</strong> Flexbox = 1D (row OR column). Grid = 2D (rows AND columns). Use Flexbox for nav bars, card rows. Use Grid for full page layout.</div>
+  <div class="note-card"><strong>📌 justify-content vs align-items in Flexbox:</strong> justify-content controls horizontal (main axis) ↔. align-items controls vertical (cross axis) ↕.</div>
+  <div class="note-card"><strong>📌 For margin: auto</strong> — Use <code>margin: auto;</code> with a defined width to horizontally center a block element. Without a width, center alignment has no effect.</div>
+  <div class="warn-card"><strong>⚠️ animation-duration is REQUIRED:</strong> If animation-duration is not specified, no animation will occur because the default value is 0s.</div>
+  <div class="note-card"><strong>📌 position: relative required for animation movement:</strong> For top/left properties to work inside @keyframes, the element must have <code>position: relative</code>. position: static (default) ignores these properties.</div>
+  <div class="note-card"><strong>📌 CSS Transition requires TWO things:</strong> (1) The CSS property to add effect to, (2) The duration of the effect.</div>
+  <div class="tip-card"><strong>✅ Git Basic Workflow:</strong> git init → git add → git commit → git remote add origin → git push → (git pull before next push) → git branch/merge</div>
+  <div class="note-card"><strong>📌 SVG Important Attributes:</strong> width, height (container), fill (shape color), stroke (border color), stroke-width (border thickness). For circle: cx, cy (center), r (radius). For rect: x, y, rx, ry (rounded corners).</div>
+  <div class="note-card"><strong>📌 1fr in CSS Grid</strong> = fractional unit. 3 columns of 1fr each means each column takes 33.3% of available space.</div>
+  <div class="note-card"><strong>📌 grid-template-areas</strong> uses row-by-row string definitions. Repeating a name in the same row means that item spans that many columns. Each string = one row.</div>
+  <div class="warn-card"><strong>⚠️ datalist "list" attribute</strong> must match the "id" of the &lt;datalist&gt; element — exactly like label/input connection.</div>
+  <div class="tip-card"><strong>✅ transform-origin</strong> default is center. Change to <code>left top</code>, <code>bottom right</code>, etc. to control the pivot point of rotation/scale/skew.</div>
+  <div class="note-card"><strong>📌 animation-direction values:</strong> normal (forward, default), reverse (backward), alternate (forward then backward), alternate-reverse (backward then forward)</div>
+  <div class="note-card"><strong>📌 VCS Popular Tools:</strong> Git, GitHub, GitLab, Bitbucket, SVN. Git = most popular DVCS. SVN = popular CVCS.</div>
+  <div class="footer-card">
+    <p class="footer-title">All the Best for Your Exam! 🎯</p>
+    <p>User Interface Design — Unit 1 &amp; Unit 2 | Dr. B Raj Kumar | Department of Computer Science</p>
+  </div>
+
+</div><!-- /main -->
+</body>
+</html>

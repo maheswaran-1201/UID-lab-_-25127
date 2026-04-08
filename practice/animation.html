@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animations</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg,#1d2671,#c33764);
+            height:100vh;
+            margin:0;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color:white;
+        }
+        /*Animation Area*/
+        .stage{
+            width:500px;
+            height:200px;
+            border:2px dashes white;
+            position:relative;
+            overflow:hidden;
+            margin-top:20px;
+        }
+        /*Animated box*/
+        .box{
+            width:60px;
+            height:60px;
+            position:absolute;
+            top:70px;
+            left:0;
+            border-radius:10px;
+            background:#00ffd5;
+            animation:moveBox 4s infinite ease-in-out ; 
+
+        }
+        /*Animation Frames*/
+        @keyframes moveBox{
+            0%{
+                transform:translateX(0) rotate(0deg) scale(1);
+                background:#00ffd5; 
+            }
+            25%{
+                transform:translateX(120px) rotate(90deg) scale(1.2);
+                background:#00ff88; 
+            }
+            50%{
+                transform:translateX(240px) rotate(180deg) scale(1);
+                background:#ffee00; 
+            }
+            75%{
+                transform:translateX(360px) rotate(270deg) scale(1.2);
+                background:#ff7b00; 
+            }
+            100%{
+                transform:translateX(440px) rotate(360deg) scale(1);
+                background:#ff2a6d;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Animation +Transform demo</h1>
+    <div class="stage">
+        <div class="box"></div>
+    </div>
+    
+</body>
+</html>
