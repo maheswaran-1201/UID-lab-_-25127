@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopGrid</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<input type="radio" class="filter-radio" name="category" id="r-all"   checked>
+<input type="radio" class="filter-radio" name="category" id="r-elec">
+<input type="radio" class="filter-radio" name="category" id="r-cloth">
+<input type="radio" class="filter-radio" name="category" id="r-home">
+<input type="radio" class="filter-radio" name="category" id="r-books">
+
+<div class="page">
+
+  <header class="header">
+    <div class="logo-wrap">
+      <div class="logo-mark">
+        <svg width="16" height="16" viewBox="0 0 16 16">
+          <path d="M2 2h12l-1.5 9H3.5L2 2zm3 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm6 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+        </svg>
+      </div>
+      <span class="logo-text">Shop<span>Grid</span></span>
+    </div>
+
+    <div class="header-center">
+      <div class="search-wrap">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7">
+          <circle cx="6.5" cy="6.5" r="5"/>
+          <path d="M10.5 10.5L14 14" stroke-linecap="round"/>
+        </svg>
+        <input type="text" placeholder="Search products, brands…">
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <a href="#" class="wishlist-btn" title="Wishlist">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 14s-6-4.35-6-8a4 4 0 0 1 6-3.46A4 4 0 0 1 14 6c0 3.65-6 8-6 8z"/>
+        </svg>
+      </a>
+      <a href="#" class="cart">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5">
+          <path d="M1 1h2.5l1.8 7.5h7.4l1.3-5H5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="7" cy="13.5" r="1" fill="#fff" stroke="none"/>
+          <circle cx="11.5" cy="13.5" r="1" fill="#fff" stroke="none"/>
+        </svg>
+        Cart
+        <span class="cart-num">0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ── BODY ── -->
+  <div class="body-wrap">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-label">Categories</div>
+
+      <label class="cat-tab" for="r-all">
+        <span class="cat-icon all">🛍️</span>
+        <span class="cat-name">All Products</span>
+        <span class="cat-badge">21</span>
+      </label>
+
+      <label class="cat-tab" for="r-elec">
+        <span class="cat-icon elec">💻</span>
+        <span class="cat-name">Electronics</span>
+        <span class="cat-badge">6</span>
+      </label>
+
+      <label class="cat-tab" for="r-cloth">
+        <span class="cat-icon cloth">👕</span>
+        <span class="cat-name">Clothing</span>
+        <span class="cat-badge">5</span>
+      </label>
+
+      <label class="cat-tab" for="r-home">
+        <span class="cat-icon home">🏠</span>
+        <span class="cat-name">Home Appliances</span>
+        <span class="cat-badge">5</span>
+      </label>
+
+      <label class="cat-tab" for="r-books">
+        <span class="cat-icon books">📚</span>
+        <span class="cat-name">Books</span>
+        <span class="cat-badge">5</span>
+      </label>
+
+      <div class="sidebar-divider"></div>
+
+      <div class="promo">
+        <div class="promo-eyebrow">Limited offer</div>
+        <div class="promo-heading">20% off your first order</div>
+        <div class="promo-code">GRID20</div>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+      <div class="content-head">
+
+        <!-- Dynamic titles per category -->
+        <div class="page-title pt-all">
+          <h1>All Products</h1>
+          <p>Showing all 21 items</p>
+        </div>
+        <div class="page-title pt-elec">
+          <h1>Electronics</h1>
+          <p>6 products available</p>
+        </div>
+        <div class="page-title pt-cloth">
+          <h1>Clothing</h1>
+          <p>5 products available</p>
+        </div>
+        <div class="page-title pt-home">
+          <h1>Home Appliances</h1>
+          <p>5 products available</p>
+        </div>
+        <div class="page-title pt-books">
+          <h1>Books</h1>
+          <p>5 products available</p>
+        </div>
+
+        <div class="sort-bar">
+          <label for="sort">Sort by</label>
+          <select class="sort-select" id="sort">
+            <option>Featured</option>
+            <option>Price: Low → High</option>
+            <option>Price: High → Low</option>
+            <option>Top Rated</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ── PRODUCTS GRID ── -->
+      <div class="products">
+
+        <!-- ELECTRONICS -->
+        <div class="card elec">
+          <div class="card-img">
+            <span class="badge badge-hot">Hot</span>
+            <span class="card-emoji">🎧</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Wireless Headphones</div>
+            <div class="card-brand">SoundWave</div>
+            <div class="card-row">
+              <span class="card-price">$89</span>
+              <span class="card-stars">★★★★★</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac1">
+              <label class="add-label" for="ac1">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card elec">
+          <div class="card-img">
+            <span class="badge badge-new">New</span>
+            <span class="card-emoji">⌨️</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Mechanical Keyboard</div>
+            <div class="card-brand">KeyTech</div>
+            <div class="card-row">
+              <span class="card-price">$119</span>
+              <span class="card-stars">★★★★☆</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac2">
+              <label class="add-label" for="ac2">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card elec">
+          <div class="card-img">
+            <span class="card-emoji">📷</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">4K Webcam</div>
+            <div class="card-brand">VisionPro</div>
+            <div class="card-row">
+              <span class="card-price">$74</span>
+              <span class="card-stars">★★★★☆</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac3">
+              <label class="add-label" for="ac3">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card elec">
+          <div class="card-img">
+            <span class="badge badge-sale">Sale</span>
+            <span class="card-emoji">⌚</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Smart Watch</div>
+            <div class="card-brand">TechFit</div>
+            <div class="card-row">
+              <span class="card-price">$199</span>
+              <span class="card-stars">★★★★★</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac4">
+              <label class="add-label" for="ac4">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card elec">
+          <div class="card-img">
+            <span class="card-emoji">🔊</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Portable Speaker</div>
+            <div class="card-brand">SoundWave</div>
+            <div class="card-row">
+              <span class="card-price">$59</span>
+              <span class="card-stars">★★★★☆</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac5">
+              <label class="add-label" for="ac5">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card elec">
+          <div class="card-img">
+            <span class="badge badge-new">New</span>
+            <span class="card-emoji">🔌</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">USB-C Hub</div>
+            <div class="card-brand">ConnectAll</div>
+            <div class="card-row">
+              <span class="card-price">$39</span>
+              <span class="card-stars">★★★★☆</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac6">
+              <label class="add-label" for="ac6">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- CLOTHING -->
+        <div class="card cloth">
+          <div class="card-img">
+            <span class="card-emoji">👖</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Slim Fit Jeans</div>
+            <div class="card-brand">DenimCo</div>
+            <div class="card-row">
+              <span class="card-price">$49</span>
+              <span class="card-stars">★★★★☆</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac7">
+              <label class="add-label" for="ac7">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card cloth">
+          <div class="card-img">
+            <span class="badge badge-sale">Sale</span>
+            <span class="card-emoji">👕</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Graphic Tee</div>
+            <div class="card-brand">UrbanWear</div>
+            <div class="card-row">
+              <span class="card-price">$25</span>
+              <span class="card-stars">★★★★★</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac8">
+              <label class="add-label" for="ac8">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card cloth">
+          <div class="card-img">
+            <span class="badge badge-hot">Hot</span>
+            <span class="card-emoji">🧥</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Puffer Jacket</div>
+            <div class="card-brand">NorthEdge</div>
+            <div class="card-row">
+              <span class="card-price">$129</span>
+              <span class="card-stars">★★★★★</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac9">
+              <label class="add-label" for="ac9">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card cloth">
+          <div class="card-img">
+            <span class="badge badge-new">New</span>
+            <span class="card-emoji">👟</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Running Shoes</div>
+            <div class="card-brand">Stride</div>
+            <div class="card-row">
+              <span class="card-price">$89</span>
+              <span class="card-stars">★★★★☆</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac10">
+              <label class="add-label" for="ac10">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card cloth">
+          <div class="card-img">
+            <span class="card-emoji">🧶</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Wool Sweater</div>
+            <div class="card-brand">KnitCo</div>
+            <div class="card-row">
+              <span class="card-price">$65</span>
+              <span class="card-stars">★★★★☆</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac11">
+              <label class="add-label" for="ac11">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOME APPLIANCES -->
+        <div class="card home">
+          <div class="card-img">
+            <span class="badge badge-hot">Hot</span>
+            <span class="card-emoji">🍟</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Air Fryer</div>
+            <div class="card-brand">CrispMaster</div>
+            <div class="card-row">
+              <span class="card-price">$79</span>
+              <span class="card-stars">★★★★★</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac12">
+              <label class="add-label" for="ac12">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card home">
+          <div class="card-img">
+            <span class="badge badge-new">New</span>
+            <span class="card-emoji">🤖</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Robot Vacuum</div>
+            <div class="card-brand">CleanBot</div>
+            <div class="card-row">
+              <span class="card-price">$249</span>
+              <span class="card-stars">★★★★★</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac13">
+              <label class="add-label" for="ac13">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card home">
+          <div class="card-img">
+            <span class="card-emoji">☕</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Coffee Maker</div>
+            <div class="card-brand">BrewPro</div>
+            <div class="card-row">
+              <span class="card-price">$99</span>
+              <span class="card-stars">★★★★☆</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac14">
+              <label class="add-label" for="ac14">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card home">
+          <div class="card-img">
+            <span class="badge badge-sale">Sale</span>
+            <span class="card-emoji">💡</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Smart Bulbs 4-pk</div>
+            <div class="card-brand">LumiHome</div>
+            <div class="card-row">
+              <span class="card-price">$34</span>
+              <span class="card-stars">★★★★☆</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac15">
+              <label class="add-label" for="ac15">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card home">
+          <div class="card-img">
+            <span class="card-emoji">🥣</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Stand Mixer</div>
+            <div class="card-brand">KitchenAce</div>
+            <div class="card-row">
+              <span class="card-price">$189</span>
+              <span class="card-stars">★★★★★</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac16">
+              <label class="add-label" for="ac16">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOOKS -->
+        <div class="card books">
+          <div class="card-img">
+            <span class="badge badge-hot">Hot</span>
+            <span class="card-emoji">📗</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Atomic Habits</div>
+            <div class="card-brand">James Clear</div>
+            <div class="card-row">
+              <span class="card-price">$16</span>
+              <span class="card-stars">★★★★★</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac17">
+              <label class="add-label" for="ac17">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card books">
+          <div class="card-img">
+            <span class="card-emoji">📘</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Deep Work</div>
+            <div class="card-brand">Cal Newport</div>
+            <div class="card-row">
+              <span class="card-price">$14</span>
+              <span class="card-stars">★★★★★</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac18">
+              <label class="add-label" for="ac18">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card books">
+          <div class="card-img">
+            <span class="badge badge-sale">Sale</span>
+            <span class="card-emoji">📙</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">The Lean Startup</div>
+            <div class="card-brand">Eric Ries</div>
+            <div class="card-row">
+              <span class="card-price">$15</span>
+              <span class="card-stars">★★★★☆</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac19">
+              <label class="add-label" for="ac19">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card books">
+          <div class="card-img">
+            <span class="badge badge-new">New</span>
+            <span class="card-emoji">📕</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Sapiens</div>
+            <div class="card-brand">Y. N. Harari</div>
+            <div class="card-row">
+              <span class="card-price">$18</span>
+              <span class="card-stars">★★★★★</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac20">
+              <label class="add-label" for="ac20">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card books">
+          <div class="card-img">
+            <span class="card-emoji">📓</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Zero to One</div>
+            <div class="card-brand">Peter Thiel</div>
+            <div class="card-row">
+              <span class="card-price">$14</span>
+              <span class="card-stars">★★★★☆</span>
+            </div>
+            <div class="add-wrap">
+              <input type="checkbox" class="add-check" id="ac21">
+              <label class="add-label" for="ac21">
+                <span class="lbl-default">Add to cart</span>
+                <span class="lbl-added">✓ Added!</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /products -->
+    </main>
+
+  </div><!-- /body-wrap -->
+</div><!-- /page -->
+
+</body>
+</html>
