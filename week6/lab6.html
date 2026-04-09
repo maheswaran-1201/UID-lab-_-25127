@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amrita Sales</title>
+<style>
+body{
+font-family:'Times New Roman', Times, serif;
+margin:0;
+}
+
+header{
+background:#952732a3;
+color:rgb(255, 246, 246);
+padding:15px;
+font-size:22px;
+}
+
+.container{
+display:flex;
+}
+
+
+x
+.sidebar{
+width:220px;
+background:#c61d2d;
+color:white;
+padding:20px;
+height:500px;
+}
+
+.sale-banner{
+background:#ffe5e5;
+color:#c61d2d;
+text-align:center;
+padding:10px;
+font-size:20px;
+font-weight:bold;
+}
+
+.sidebar label{
+display:block;
+margin:10px 0;
+cursor:pointer;
+}
+
+
+
+input{
+display:none;
+}
+
+
+
+
+
+.products{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+padding:20px;
+flex:1;
+}
+
+
+
+.card{
+border:1px solid #ddd;
+padding:10px;
+background:#f8f8f8;
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.price{
+font-weight:bold;
+margin-top:5px;
+}
+
+button{
+background:#c61d2d;
+color:white;
+border:none;
+padding:6px 12px;
+margin-top:5px;
+cursor:pointer;
+}
+.products .card {
+  display: none;
+}
+
+#all:checked ~ .container .card,
+#electronics:checked ~ .container .electronics,
+#clothing:checked ~ .container .clothing,
+#books:checked ~ .container .books,
+#home:checked ~ .container .home {
+  display: block;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>Amrita Sales</header>
+
+
+<input type="radio" name="cat" id="all" checked>
+<input type="radio" name="cat" id="electronics">
+<input type="radio" name="cat" id="clothing">
+<input type="radio" name="cat" id="home">
+<input type="radio" name="cat" id="books">
+<div class="sale-banner">
+🎉 Diwali Sale - 50% OFF on Selected Products 🎉
+</div>
+<div class="container">
+
+<div class="sidebar">
+
+<h3>Filter By Categories</h3>
+
+<label for="all">> All</label>
+<label for="electronics">> Electronics</label>
+<label for="clothing">> Clothing</label>
+<label for="home">> Home Goods</label>
+<label for="books">> Books</label>
+
+</div>
+
+
+<div class="products">
+
+<div class="card books">
+<img src="book.png" alt="Can We Be Strangers Again?">
+<h4>Little Can We Be Strangers Again?</h4>
+<p>Classic story book</p>
+<p class="price">₹350</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card clothing">
+<img src="t-shirt.png" alt="Cotton T-Shirt">
+<h4>T Shirt</h4>
+<p>Comfortable cotton t-shirt</p>
+<p class="price">₹750</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card electronics">
+<img src="mac.png" alt="MacBook laptop">
+<h4>Mac neo </h4>
+<p>High performance laptop</p>
+<p class="price">₹90000</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card electronics">
+<img src="s24.png" alt="Samsung S24">
+<h4>Samsung S24</h4>
+<p>Android smartphone</p>
+<p class="price">₹100000</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card home">
+<img src="mw.png" alt="Home microwave appliance">
+<h4>Microwave</h4>
+<p>Home appliance</p>
+<p class="price">₹8000</p>
+<button>Add to Cart</button>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
