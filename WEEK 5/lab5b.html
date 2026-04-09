@@ -6,17 +6,17 @@
      <title>Our webpage</title>  
      <link rel="stylesheet" href="styles.css">
     </head>
-    <body >
-        <p style="text-align: center; font-family: Arial, sans-serif; background-color:rgb(31, 2, 58);">This is a main page of our website.</p>
-        <div style="text-align: center; font-family: Arial, sans-serif; background-color: #f0f0f0;display: flex;justify-content: center;">
+    <body>
+        <p class="main-title">This is a main page of our website.</p>
+        <div class="navbar">
             <div>
-                <a href="home.html" style="margin-right: 20px;"target="iframe_a"><button style="background-color: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;"onclick="this.style.backgroundColor='#0056b3';this.style.transform='scale(0.95)';setTimeout(() => {this.style.transform='scale(1)';this.style.backgroundColor='#007BFF';}, 150);">Home</button></a>
+                <a href="home.html" class="nav-link" target="iframe_a"><button class="nav-button" onclick="this.style.backgroundColor='#0056b3';this.style.transform='scale(0.95)';setTimeout(() => {this.style.transform='scale(1)';this.style.backgroundColor='#007BFF';}, 150);">Home</button></a>
             </div>
             <div>
-                <a href="About.html" style="margin-right: 20px;"target="iframe_a"><button style="background-color: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;"onclick="this.style.backgroundColor='#0056b3';this.style.transform='scale(0.95)';setTimeout(() => {this.style.transform='scale(1)';this.style.backgroundColor='#007BFF';}, 150);">About</button></a>
+                <a href="About.html" class="nav-link" target="iframe_a"><button class="nav-button" onclick="this.style.backgroundColor='#0056b3';this.style.transform='scale(0.95)';setTimeout(() => {this.style.transform='scale(1)';this.style.backgroundColor='#007BFF';}, 150);">About</button></a>
             </div>
             <div>
-                <a href="contact.html" target="iframe_a"><button style="background-color: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;"onclick="this.style.backgroundColor='#0056b3';this.style.transform='scale(0.95)';setTimeout(() => {this.style.transform='scale(1)';this.style.backgroundColor='#007BFF';}, 150);">Contact</button></a>
+                <a href="contact.html" target="iframe_a"><button class="nav-button" onclick="this.style.backgroundColor='#0056b3';this.style.transform='scale(0.95)';setTimeout(() => {this.style.transform='scale(1)';this.style.backgroundColor='#007BFF';}, 150);">Contact</button></a>
             </div>
         </div>
         <iframe  name="iframe_a" height="400px" width="100%" title="Iframe Example"></iframe>

@@ -46,6 +46,16 @@
         .left {
             text-align: left;
         }
+        .short-break {
+            background-color: yellow;
+            writing-mode: vertical-rl;
+            text-align: center;
+        }
+        .lunch-break {
+            background-color: yellow;
+            writing-mode: vertical-lr;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -98,16 +108,13 @@
       <tr>
         <th>Monday</th>
         <td colspan="2">Linear Algebra LAB</td>
-        <td rowspan="5" style="background-color: yellow; writing-mode:
-vertical-rl; text-align: center;">Short break</td>
+<td rowspan="5" class="short-break">Short break</td>
         <td>LIBRARY</td>
         <td>Modern Physics</td>
         <td>LIBRARY</td>
-        <td rowspan="5" style="background-color: yellow;writing-mode:
-vertical-lr; text-align: center;">Lunch Break</td>
+<td rowspan="5" class="lunch-break">Lunch Break</td>
         <td>Manufacturing Practice LAB</td>
-        <td rowspan="5" style="background-color: yellow; writing-mode:
-vertical-rl; text-align: center;">Short break</td>
+<td rowspan="5" class="short-break">Short break</td>
         <td colspan="2">Manufacturing Practice LAB</td>
       </tr>
       <tr>
@@ -128,7 +135,7 @@ vertical-rl; text-align: center;">Short break</td>
         <td>Discrete Mathematics</td>
         <td>User Interface Design</td>
         <td>Glimpses of Glorious India</td>
-        <td style="color: red;">COUNSELLING</td>
+        <td class="counselling">COUNSELLING</td>
         <td colspan="2">LIBRARY</td>
       </tr>
       <tr>
@@ -136,7 +143,7 @@ vertical-rl; text-align: center;">Short break</td>
         <td>Linear Algebra</td>
         <td>Object Oriented Programming</td>
         <td>Discrete Mathematics</td>
-        <td style="color: red;">COUNSELLING</td>
+        <td class="counselling">COUNSELLING</td>
         <td>LIBRARY</td>
         <td>Modern Physics</td>
         <td colspan="2">LIBRARY</td>
