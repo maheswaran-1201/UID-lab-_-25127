@@ -1,74 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Website</title>
-
-<style>
-
-body{
-    font-family: Georgia, 'Times New Roman', serif;
-    margin:0;
-    background:#ffffff;
-}
-
-header{
-    padding:10px;
-}
-
-h1{
-    margin-left:10px;
-}
-
-.navbar{
-    background:#d3d3d3;
-    padding:20px;
-    border-radius:10px;
-    margin:10px;
-}
-
-.navbar a{
-    text-decoration:none;
-}
-
-.navbar button{
-    padding:10px 20px;
-    margin-right:10px;
-    border:none;
-    border-radius:6px;
-    background:#bcbcbc;
-    font-size:16px;
-    cursor:pointer;
-}
-
-.content{
-    width:700px;
-    background:#c7d8db;
-    padding:30px;
-    margin:20px;
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-<p>CSE25127-MAHESWARAN</p>
-<h1>My Website</h1>
-</header>
-
-<div class="navbar">
-<a href="home.html"><button>Home</button></a>
-<a href="about.html"><button>About</button></a>
-<a href="blog.html"><button>Blog</button></a>
-</div>
-
-<div class="content">
-<h1>Home Page</h1>
-<p>Welcome to the home page.</p>
-</div>
-
-</body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+     <title>Our webpage</title>  
+     <link rel="stylesheet" href="styles.css">
+    </head>
+    <body >
+        <p style="text-align: center; font-family: Arial, sans-serif; background-color:rgb(31, 2, 58);">This is a main page of our website.</p>
+        <div style="text-align: center; font-family: Arial, sans-serif; background-color: #f0f0f0;display: flex;justify-content: center;">
+            <div>
+                <a href="home.html" style="margin-right: 20px;"target="iframe_a"><button style="background-color: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;"onclick="this.style.backgroundColor='#0056b3';this.style.transform='scale(0.95)';setTimeout(() => {this.style.transform='scale(1)';this.style.backgroundColor='#007BFF';}, 150);">Home</button></a>
+            </div>
+            <div>
+                <a href="About.html" style="margin-right: 20px;"target="iframe_a"><button style="background-color: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;"onclick="this.style.backgroundColor='#0056b3';this.style.transform='scale(0.95)';setTimeout(() => {this.style.transform='scale(1)';this.style.backgroundColor='#007BFF';}, 150);">About</button></a>
+            </div>
+            <div>
+                <a href="contact.html" target="iframe_a"><button style="background-color: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;"onclick="this.style.backgroundColor='#0056b3';this.style.transform='scale(0.95)';setTimeout(() => {this.style.transform='scale(1)';this.style.backgroundColor='#007BFF';}, 150);">Contact</button></a>
+            </div>
+        </div>
+        <iframe  name="iframe_a" height="400px" width="100%" title="Iframe Example"></iframe>
+    </body>
 </html>
