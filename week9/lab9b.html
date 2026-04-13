@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Operations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #mainBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #optionsDiv {
+            display: none;
+            margin-top: 30px;
+        }
+        .optionBtn {
+            background-color: #2196F3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Operations</h1>
+    
+    <button id="mainBtn" onclick="showOptions()">Click to Start</button>
+    
+    <div id="optionsDiv">
+        <h2>Select an Operation:</h2>
+        <button class="optionBtn" onclick="evenOrOdd()">Even or Odd</button>
+        <button class="optionBtn" onclick="checkArmstrong()">Armstrong</button>
+        <button class="optionBtn" onclick="factorial()">Factorial</button>
+    </div>
+
+    <script>
+        function showOptions() {
+            document.getElementById("mainBtn").style.display = "none";
+            document.getElementById("optionsDiv").style.display = "block";
+        }
+
+        function evenOrOdd() {
+            let num = prompt("Enter a number:");
+            if (num !== null) {
+                num = parseInt(num);
+                if (num % 2 === 0) {
+                    alert(num + " is an even number.");
+                } else {
+                    alert(num + " is an odd number.");
+                }
+            }
+        }
+
+        function checkArmstrong() {
+            let num = prompt("Enter a number:");
+            if (num !== null) {
+                num = parseInt(num);
+                let sum = 0;
+                let temp = num;
+                let digitCount = num.toString().length;
+                
+                while (temp > 0) {
+                    let digit = temp % 10;
+                    sum += Math.pow(digit, digitCount);
+                    temp = Math.floor(temp / 10);
+                }
+                
+                if (sum === num) {
+                    alert(num + " is an Armstrong number.");
+                } else {
+                    alert(num + " is not an Armstrong number.");
+                }
+            }
+        }
+
+        function factorial() {
+            let num = prompt("Enter a number:");
+            if (num !== null) {
+                num = parseInt(num);
+                if (num < 0) {
+                    alert("Factorial is not defined for negative numbers.");
+                } else if (num === 0 || num === 1) {
+                    alert("Factorial of " + num + " is 1.");
+                } else {
+                    let result = 1;
+                    for (let i = 2; i <= num; i++) {
+                        result *= i;
+                    }
+                    alert("Factorial of " + num + " is " + result + ".");
+                }
+            }
+        }
+    </script>
+</body>
+</html>

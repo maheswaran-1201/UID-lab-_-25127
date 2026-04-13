@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>factorial</title>
+    <style>
+        #inputSection {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button onclick="showInputBox()">Enter Number</button>
+        <div id="inputSection">
+            <input type="number" id="numberInput" placeholder="Enter a number" />
+            <button onclick="calculateFactorial()">Calculate</button>
+            <p id="result"></p>
+        </div>
+        <script>
+            function showInputBox(){
+                document.getElementById("inputSection").style.display = "block";
+            }
+
+            function calculateFactorial(){
+                let num = document.getElementById("numberInput").value;
+                let resultDiv = document.getElementById("result");
+
+                if (num === "") {
+                    resultDiv.textContent = "Please enter a number!";
+                    resultDiv.style.color = "red";
+                    return;
+                }
+
+                num = parseInt(num);
+                if (num < 0) {
+                    resultDiv.textContent = "Factorial is not defined for negative numbers.";
+                    resultDiv.style.color = "red";
+                    return;
+                }
+
+                let factorial = 1;
+                for (let i = 1; i <= num; i++) {
+                    factorial *= i;
+                }
+                resultDiv.textContent = "Factorial of " + num + " is " + factorial + ".";
+                resultDiv.style.color = "green";
+            }
+        </script>
+    </div>
+</body>
+</html>

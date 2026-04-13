@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>even or odd using javascript</title>
+</head>
+<body>
+    <button onclick="showInputBox()">Enter Number</button>
+    
+    <div id="inputSection" style="display:none; margin-top: 20px;">
+        <input type="number" id="numberInput" placeholder="Enter a number" />
+        <button onclick="checkEvenOdd()">Check</button>
+        <p id="result"></p>
+    </div>
+    
+   <script>
+        function showInputBox(){
+            document.getElementById("inputSection").style.display = "block";
+        }
+        
+        function checkEvenOdd(){
+            let num = document.getElementById("numberInput");
+            let resultDiv = document.getElementById("result");
+            
+            if (num === "") {
+                resultDiv.textContent = "Please enter a number!";
+                resultDiv.style.color = "red";
+                return;
+            }
+            
+            num = parseInt(num);
+            if (num % 2 === 0) {
+                resultDiv.textContent = num + " is an Even number.";
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.textContent = num + " is an Odd number.";
+                resultDiv.style.color = "blue";
+            }
+        }
+    </script>
+</body>
+</html>
