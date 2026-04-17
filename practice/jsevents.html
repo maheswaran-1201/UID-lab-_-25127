@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation + Event(on key up)</title>
+    <title>validation</title>
+</head>
+<body>
+    UserName: <input type="text" id="name" placeholder="Enter username" onkeyup="validate()"><br><br>
+    <p id="msg"></p>
+    <script>
+        function validate() {
+            let value = document.getElementById("name").value;
+            if (value.length < 5) {
+                document.getElementById("msg").innerHTML = "Username must be at least 5 characters long.";
+                document.getElementById("msg").style.color = "red";
+            } else {
+                document.getElementById("msg").innerHTML = "valid username";
+                document.getElementById("msg").style.color = "green";
+            }
+            if (value === "" || email === "" || password === "") {
+                alert("All fields are required!");
+                return false;
+            }
+            alert("Validation successful!");
+            return true;
+        }
+    </script>
+</body>
+</html>

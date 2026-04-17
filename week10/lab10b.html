@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab10b</title>
+    <p>Write a JS conditional statement to sort three numbers using functions.
+Display an alert box to show the result</p>
+</head>
+<body>
+    <script>
+        function sortThreeNumbers(num1, num2, num3) {
+            let numbers = [num1, num2, num3];
+            numbers.sort((a, b) => a - b);
+            return numbers;
+        }
+        let a = parseFloat(prompt("Enter first number:"));
+        let b = parseFloat(prompt("Enter second number:"));
+        let c = parseFloat(prompt("Enter third number:"));
+
+        if (!isNaN(a) && !isNaN(b) && !isNaN(c)) {
+            let sortedNumbers = sortThreeNumbers(a, b, c);
+            alert(`Numbers: ${a}, ${b}, ${c}\nSorted: ${sortedNumbers}`);
+        } else {
+            alert("Please enter valid numbers!");
+        }
+    </script>
+</body>
+</html>

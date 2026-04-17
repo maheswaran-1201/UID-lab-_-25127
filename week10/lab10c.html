@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab10c</title>
+    <p>Write a JS conditional statement to find the largest of five numbers using function & onclick event.
+Display an alert box to show the result</p>
+</head>
+<body>
+    <script>
+        function findLargest(num1, num2, num3, num4, num5) {
+            let largest = num1;
+            if (num2 > largest) {
+                largest = num2;
+            }
+            if (num3 > largest) {
+                largest = num3;
+            }
+            if (num4 > largest) {
+                largest = num4;
+            }
+            if (num5 > largest) {
+                largest = num5;
+            }
+            return largest;
+        }
+        function showLargest() {
+            let a = parseFloat(prompt("Enter first number:"));
+            let b = parseFloat(prompt("Enter second number:"));
+            let c = parseFloat(prompt("Enter third number:"));
+            let d = parseFloat(prompt("Enter fourth number:"));
+            let e = parseFloat(prompt("Enter fifth number:"));
+
+            if (!isNaN(a) && !isNaN(b) && !isNaN(c) && !isNaN(d) && !isNaN(e)) {
+                let largest = findLargest(a, b, c, d, e);
+                alert(`Numbers: ${a}, ${b}, ${c}, ${d}, ${e}\nLargest: ${largest}`);
+            } else {
+                alert("Please enter valid numbers!");
+            }
+        }
+    </script>
+    <button onclick="showLargest()">Find Largest</button>
+</body>
+</html>

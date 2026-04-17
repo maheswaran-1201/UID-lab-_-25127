@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab10a</title>
+    <p>Write a JS conditional statement to find the sign of a product of three numbers using functions.
+Display an alert box with the specified sign.</p>
+</head>
+<body>
+    <script>
+        function findProductSign(num1, num2, num3) {
+            let product = num1 * num2 * num3;
+            
+            if (product > 0) {
+                return "POSITIVE";
+            } else if (product < 0) {
+                return "NEGATIVE";
+            } else {
+                return "ZERO";
+            }
+        }
+        
+        let a = parseFloat(prompt("Enter first number:"));
+        let b = parseFloat(prompt("Enter second number:"));
+        let c = parseFloat(prompt("Enter third number:"));
+        
+        if (!isNaN(a) && !isNaN(b) && !isNaN(c)) {
+            let sign = findProductSign(a, b, c);
+            let product = a * b * c;
+            alert(`Numbers: ${a}, ${b}, ${c}\nProduct: ${product}\nSign: ${sign}`);
+        } else {
+            alert("Please enter valid numbers!");
+        }
+    </script>
+</body>
+</html>

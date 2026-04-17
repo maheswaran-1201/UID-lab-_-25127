@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab10d</title>
+    <p>Write a JS for loop that will iterate from 0 to 15. For each iteration, it will check if the current number is odd or even & display a message to the screen.
+</p>
+</head>
+<body>
+    <button onclick="startChecking()">Start</button>
+    
+    <div id="result"></div>
+
+    <script>
+        function startChecking() {
+            let start = parseInt(prompt("Enter starting number:"));
+            let end = parseInt(prompt("Enter ending number:"));
+            
+            // Validate inputs
+            if (isNaN(start) || isNaN(end)) {
+                alert("Please enter valid numbers!");
+                return;
+            }
+            
+            let resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <h3>Range: ${start} to ${end}</h3>
+                <button onclick="displayOdd(${start}, ${end})">Odd Numbers</button>
+                <button onclick="displayEven(${start}, ${end})">Even Numbers</button>
+                <div id="output" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+            `;
+        }
+        
+        function displayOdd(start, end) {
+            let oddNumbers = [];
+            for (let i = start; i <= end; i++) {
+                if (i % 2 !== 0) {
+                    oddNumbers.push(i);
+                }
+            }
+            document.getElementById('output').innerHTML = `<strong>Odd Numbers:</strong> ${oddNumbers.join(", ")}`;
+        }
+        
+        function displayEven(start, end) {
+            let evenNumbers = [];
+            for (let i = start; i <= end; i++) {
+                if (i % 2 === 0) {
+                    evenNumbers.push(i);
+                }
+            }
+            document.getElementById('output').innerHTML = `<strong>Even Numbers:</strong> ${evenNumbers.join(", ")}`;
+        }
+    </script>
+</body>
+</html>
