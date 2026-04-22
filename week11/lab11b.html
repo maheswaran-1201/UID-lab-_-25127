@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form with Email Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background-color: #f0f8f0;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        input[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .error-message {
+            color: #d32f2f;
+            background-color: #ffebee;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 5px;
+            font-size: 14px;
+            display: none;
+        }
+        .success-message {
+            color: #388e3c;
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 5px;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Registration Form</h1>
+        <form id="registrationForm" onsubmit="return validateForm(event)">
+            <div class="form-group">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+                <div id="emailError" class="error-message"></div>
+                <div id="emailSuccess" class="success-message"></div>
+            </div>
+            </div>
+
+            <input type="submit" value="SUBMIT">
+            <onclick="alert('Form submitted successfully!')">
+        </form>
+    </div>
+
+    <script>
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function validateForm(event) {
+            const email = document.getElementById("email").value.trim();
+            const emailError = document.getElementById("emailError");
+            const emailSuccess = document.getElementById("emailSuccess");
+            const submitButton = document.querySelector('input[type="submit"]');
+
+            emailError.style.display = "none";
+            emailSuccess.style.display = "none";
+            emailError.textContent = "";
+            emailSuccess.textContent = "";
+
+            if (!validateEmail(email)) {
+                event.preventDefault();
+                emailError.textContent = "Please enter a valid email address (e.g., user@example.com)";
+                emailError.style.display = "block";
+                submitButton.disabled = true;
+                return false;
+            }
+
+            emailSuccess.textContent = "Email format is valid!";
+            emailSuccess.style.display = "block";
+            submitButton.disabled = false;
+            
+            return true;
+        }
+
+        document.getElementById("email").addEventListener("input", function() {
+            const email = this.value.trim();
+            const emailError = document.getElementById("emailError");
+            const emailSuccess = document.getElementById("emailSuccess");
+
+            if (email === "") {
+                emailError.style.display = "none";
+                emailSuccess.style.display = "none";
+                return;
+            }
+
+            if (validateEmail(email)) {
+                emailError.style.display = "none";
+                emailSuccess.textContent = "Valid email format!";
+                emailSuccess.style.display = "block";
+            } else {
+                emailSuccess.style.display = "none";
+                emailError.textContent = "Invalid email format. Use: user@example.com";
+                emailError.style.display = "block";
+            }
+        });        
+    </script>
+</body>
+</html>

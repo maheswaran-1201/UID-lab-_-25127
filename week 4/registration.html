@@ -4,15 +4,43 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Registration Form</title>
+	<script>
+		function validateEmail(email) {
+			// Regular expression for email validation
+			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			return emailRegex.test(email);
+		}
+
+		function validateForm(event) {
+			const email = document.getElementById("email").value.trim();
+			const emailError = document.getElementById("emailError");
+
+			// Clear previous error message
+			emailError.textContent = "";
+
+			// Validate email format
+			if (!validateEmail(email)) {
+				event.preventDefault();
+				emailError.textContent = "Please enter a valid email address (e.g., user@example.com)";
+				return false;
+			}
+
+			return true;
+		}
+	</script>
+	<style>
+		.error { color: red; font-size: 14px; margin-top: 5px; }
+	</style>
 </head>
 <body>
-<form action="submit_registration.php" method="post">
+<form action="submit_registration.php" method="post" onsubmit="return validateForm(event)">
 	<table>
 	<label for="fullname">Name:</label>
 	<input type="text" id="fullname" name="fullname" required><br><br>
 
 	<label for="email">Email:</label>
-	<input type="email" id="email" name="email" required><br><br>
+	<input type="email" id="email" name="email" required><br>
+	<div id="emailError" class="error"></div><br>
 
 	<label for="password">Password:</label>
 	<input type="password" id="password" name="password" required><br><br>

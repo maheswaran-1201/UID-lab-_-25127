@@ -3,9 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A website requires users to enter a username. The system should display a message while typing if the username is less than 5 characters.</title>
+    <title>Username Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        .message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            font-weight: bold;
+        }
+        .warning {
+            color: #d32f2f;
+            background-color: #ffebee;
+            display: block;
+        }
+        .success {
+            color: #388e3c;
+            background-color: #e8f5e9;
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    
+    <h1>Username Validation</h1>
+    <form>
+        <div class="form-group">
+            <label for="username">Enter Username:</label>
+            <input type="text" id="username" placeholder="Minimum 5 characters required">
+            <div id="message" class="message"></div>
+        </div>
+    </form>
+
+    <script>
+        const usernameInput = document.getElementById('username');
+        const messageDiv = document.getElementById('message');
+
+        usernameInput.addEventListener('input', function() {
+            const username = this.value;
+            
+            if (username.length < 5 && username.length > 0) {
+                messageDiv.textContent = `⚠️ Username must be at least 5 characters (${username.length}/5)`;
+                messageDiv.className = 'message warning';
+            } else if (username.length >= 5) {
+                messageDiv.textContent = `✓ Username is valid (${username.length} characters)`;
+                messageDiv.className = 'message success';
+            } else {
+                messageDiv.className = 'message';
+            }
+        });
+    </script>
 </body>
 </html>

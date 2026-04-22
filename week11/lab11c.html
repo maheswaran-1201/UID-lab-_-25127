@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. A system should check password strength while typing and display whether it is weak or strong.
+</title>
+</head>
+<body>
+    <h1>Password Strength Checker</h1>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        #strengthMessage {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+
+    <p>Enter a password to check its strength:</p>
+    <input type="password" id="password" placeholder="Enter your password">
+    <div id="strengthMessage"></div>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const strengthMessage = document.getElementById('strengthMessage');
+
+        passwordInput.addEventListener('input', function() {
+            const password = passwordInput.value;
+            let strength = 'Weak';
+            let color = 'red';
+
+            if (password.length >= 8 && /[A-Z]/.test(password) && /[0-9]/.test(password)) {
+                strength = 'Medium';
+                color = 'orange';
+            }
+            if (password.length >= 8 && /[A-Z]/.test(password) && /[0-9]/.test(password) && /[!@#$%^&*]/.test(password)) {
+                strength = 'Strong';
+                color = 'green';
+            }
+
+            strengthMessage.textContent = `Password Strength: ${strength}`;
+            strengthMessage.style.color = color;
+        });
+    </script>
+</body>
+</html>
