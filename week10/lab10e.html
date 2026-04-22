@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab10e</title>
+    <p> Write a JS program which iterates the integers from 1 to 100.
+But for multiples of three print "LOL" instead of the number and for multiples of five print "OK".
+For numbers which are multiples of both three & five print "LOL-OK".
+</p>
+</head>
+<body>
+    <h2>LOL-OK Game</h2>
+    <button onclick="startChecking()">Start</button>
+    
+    <div id="output" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc; min-height: 50px;"></div>
+
+    <script>
+        function startChecking() {
+            let start = parseInt(prompt("Enter the starting number:"));
+            let end = parseInt(prompt("Enter the ending number:"));
+            
+            if (isNaN(start) || isNaN(end) || start > end) {
+                alert("Please enter valid numbers with start less than or equal to end.");
+                return;
+            }
+            let result = [];
+            for (let i = start; i <= end; i++) {
+                if (i % 3 === 0 && i % 5 === 0) {
+                    result.push("LOL-OK");
+                } else if (i % 3 === 0) {
+                    result.push("LOL");
+                } else if (i % 5 === 0) {
+                    result.push("OK");
+                } else {
+                    result.push(i);
+                }
+            }
+            document.getElementById('output').innerHTML = `<strong>Output (${start} to ${end}):</strong><br>${result.join(", ")}`;
+        }
+    </script>
+    
+</body>
+</html>
