@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lab10e</title>
+    <style>
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 50px;
+        }
+    </style>
     <p> Write a JS program which iterates the integers from 1 to 100.
 But for multiples of three print "LOL" instead of the number and for multiples of five print "OK".
 For numbers which are multiples of both three & five print "LOL-OK".
@@ -13,7 +21,7 @@ For numbers which are multiples of both three & five print "LOL-OK".
     <h2>LOL-OK Game</h2>
     <button onclick="startChecking()">Start</button>
     
-    <div id="output" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc; min-height: 50px;"></div>
+    <div id="output"></div>
 
     <script>
         function startChecking() {
