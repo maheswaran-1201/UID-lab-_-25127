@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A form should validate a mobile number when the user leaves the input field. The number must be exactly 10 digits.</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        #message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            font-weight: bold;
+        }
+        .error {
+            color: #d32f2f;
+            background-color: #ffebee;
+            display: block;
+        }
+        .success {
+            color: #388e3c;
+            background-color: #e8f5e9;
+            display: block;
+        }
+    </style>
+    <h1>Mobile Number Validation</h1>
+    <form id="mobileForm">
+        <label for="mobile">Enter Mobile Number:</label>
+        <input type="text" id="mobile" placeholder="Enter 10-digit mobile number">
+        <div id="message"></div>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        const mobileInput = document.getElementById('mobile');
+        const messageDiv = document.getElementById('message');
+        const mobileForm = document.getElementById('mobileForm');
+
+        mobileInput.addEventListener('blur', function() {
+            const mobileNumber = mobileInput.value.trim();
+            const mobileRegex = /^\d{10}$/; // Regular expression for exactly 10 digits
+
+            if (mobileRegex.test(mobileNumber)) {
+                messageDiv.textContent = "Valid mobile number!";
+                messageDiv.className = "success";
+            } else {
+                messageDiv.textContent = "Invalid mobile number. Please enter exactly 10 digits.";
+                messageDiv.className = "error";
+            }
+        });
+
+        mobileForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const mobileNumber = mobileInput.value.trim();
+            const mobileRegex = /^\d{10}$/; // Regular expression for exactly 10 digits
+
+            if (mobileRegex.test(mobileNumber)) {
+                alert("The number is valid!");
+                alert("Form submitted successfully!");
+            } else {
+                alert("Invalid mobile number. Please enter exactly 10 digits.");
+            }
+        });
+
+    </script>
+</body>
+</html>

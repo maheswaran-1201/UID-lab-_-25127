@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form with Validation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        input.error {
+            border-color: #e74c3c;
+            background-color: #fadbd8;
+        }
+
+        input.success {
+            border-color: #27ae60;
+            background-color: #d5f4e6;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            color: #27ae60;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .form-message {
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .form-message.success {
+            background-color: #d5f4e6;
+            color: #27ae60;
+            display: block;
+        }
+
+        .form-message.error {
+            background-color: #fadbd8;
+            color: #e74c3c;
+            display: block;
+        }
+
+        .validation-requirements {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .validation-requirements h3 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .validation-requirements ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .validation-requirements li {
+            padding: 5px 0;
+        }
+
+        .validation-requirements li:before {
+            content: "• ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        
+        <div class="validation-requirements">
+            <h3>Validation Requirements:</h3>
+            <ul>
+                <li>Name: Not empty</li>
+                <li>Email: Valid format</li>
+                <li>Password: Minimum 6 characters</li>
+            </ul>
+        </div>
+
+        <div id="formMessage" class="form-message"></div>
+
+        <form id="registrationForm" onsubmit="submitForm(event)">
+            <!-- Name Field -->
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    placeholder="Enter your full name"
+                    onblur="validateName()"
+                >
+                <div id="nameError" class="error-message"></div>
+                <div id="nameSuccess" class="success-message">✓ Name is valid</div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="Enter your email address"
+                    onblur="validateEmail()"
+                >
+                <div id="emailError" class="error-message"></div>
+                <div id="emailSuccess" class="success-message">✓ Email is valid</div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="Minimum 6 characters"
+                    onblur="validatePassword()"
+                >
+                <div id="passwordError" class="error-message"></div>
+                <div id="passwordSuccess" class="success-message">✓ Password is valid</div>
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        // Validate Name
+        function validateName() {
+            const nameInput = document.getElementById('name');
+            const nameError = document.getElementById('nameError');
+            const nameSuccess = document.getElementById('nameSuccess');
+            const name = nameInput.value.trim();
+
+            if (name === '') {
+                nameInput.classList.remove('success');
+                nameInput.classList.add('error');
+                nameError.textContent = '✗ Name cannot be empty';
+                nameError.classList.add('show');
+                nameSuccess.classList.remove('show');
+                return false;
+            } else if (name.length < 2) {
+                nameInput.classList.remove('success');
+                nameInput.classList.add('error');
+                nameError.textContent = '✗ Name must be at least 2 characters';
+                nameError.classList.add('show');
+                nameSuccess.classList.remove('show');
+                return false;
+            } else {
+                nameInput.classList.remove('error');
+                nameInput.classList.add('success');
+                nameError.classList.remove('show');
+                nameSuccess.classList.add('show');
+                return true;
+            }
+        }
+
+        // Validate Email
+        function validateEmail() {
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            const emailSuccess = document.getElementById('emailSuccess');
+            const email = emailInput.value.trim();
+
+            // Regular expression for email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (email === '') {
+                emailInput.classList.remove('success');
+                emailInput.classList.add('error');
+                emailError.textContent = '✗ Email cannot be empty';
+                emailError.classList.add('show');
+                emailSuccess.classList.remove('show');
+                return false;
+            } else if (!emailPattern.test(email)) {
+                emailInput.classList.remove('success');
+                emailInput.classList.add('error');
+                emailError.textContent = '✗ Please enter a valid email format (e.g., user@example.com)';
+                emailError.classList.add('show');
+                emailSuccess.classList.remove('show');
+                return false;
+            } else {
+                emailInput.classList.remove('error');
+                emailInput.classList.add('success');
+                emailError.classList.remove('show');
+                emailSuccess.classList.add('show');
+                return true;
+            }
+        }
+
+        // Validate Password
+        function validatePassword() {
+            const passwordInput = document.getElementById('password');
+            const passwordError = document.getElementById('passwordError');
+            const passwordSuccess = document.getElementById('passwordSuccess');
+            const password = passwordInput.value;
+
+            if (password === '') {
+                passwordInput.classList.remove('success');
+                passwordInput.classList.add('error');
+                passwordError.textContent = '✗ Password cannot be empty';
+                passwordError.classList.add('show');
+                passwordSuccess.classList.remove('show');
+                return false;
+            } else if (password.length < 6) {
+                passwordInput.classList.remove('success');
+                passwordInput.classList.add('error');
+                passwordError.textContent = `✗ Password must be at least 6 characters (${password.length}/6)`;
+                passwordError.classList.add('show');
+                passwordSuccess.classList.remove('show');
+                return false;
+            } else {
+                passwordInput.classList.remove('error');
+                passwordInput.classList.add('success');
+                passwordError.classList.remove('show');
+                passwordSuccess.classList.add('show');
+                return true;
+            }
+        }
+
+        // Submit Form
+        function submitForm(event) {
+            event.preventDefault();
+
+            // Validate all fields
+            const isNameValid = validateName();
+            const isEmailValid = validateEmail();
+            const isPasswordValid = validatePassword();
+
+            const formMessage = document.getElementById('formMessage');
+
+            if (isNameValid && isEmailValid && isPasswordValid) {
+                formMessage.textContent = '✓ Registration successful! All fields are valid.';
+                formMessage.classList.remove('error');
+                formMessage.classList.add('success');
+
+                // Reset form after 2 seconds
+                setTimeout(() => {
+                    document.getElementById('registrationForm').reset();
+                    document.getElementById('name').classList.remove('success');
+                    document.getElementById('email').classList.remove('success');
+                    document.getElementById('password').classList.remove('success');
+                    document.getElementById('nameSuccess').classList.remove('show');
+                    document.getElementById('emailSuccess').classList.remove('show');
+                    document.getElementById('passwordSuccess').classList.remove('show');
+                    formMessage.classList.remove('success');
+                }, 2000);
+            } else {
+                formMessage.textContent = '✗ Please correct the errors above and try again.';
+                formMessage.classList.remove('success');
+                formMessage.classList.add('error');
+            }
+        }
+
+        // Clear form message on input
+        document.getElementById('name').addEventListener('input', function() {
+            document.getElementById('formMessage').classList.remove('success', 'error');
+        });
+        document.getElementById('email').addEventListener('input', function() {
+            document.getElementById('formMessage').classList.remove('success', 'error');
+        });
+        document.getElementById('password').addEventListener('input', function() {
+            document.getElementById('formMessage').classList.remove('success', 'error');
+        });
+    </script>
+</body>
+</html>
