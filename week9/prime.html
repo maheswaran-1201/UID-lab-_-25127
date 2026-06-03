@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>prime or not</title>
+    <style>
+        #inputSection {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <button onclick="showInputBox()">Enter Number</button>
     
-    <div id="inputSection" style="display:none; margin-top: 20px;">
+    <div id="inputSection">
         <input type="number" id="numberInput" placeholder="Enter a number" />
         <button onclick="checkPrime()">Check</button>
         <p id="result"></p>
